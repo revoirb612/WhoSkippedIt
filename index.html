@@ -5,6 +5,7 @@
     <style>
 
         body {
+            padding-top: 60px; /* 헤더 높이만큼 여백 추가 */
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
             margin: 0;
@@ -147,11 +148,51 @@
             background-color: #0056b3;
         }
 
+        /* 플로팅 헤더 스타일 */
+        .floating-header {
+            position: fixed; /* 고정 위치 */
+            top: 0; /* 상단에 위치 */
+            left: 0;
+            right: 0;
+            background-color: #3498db; /* 배경색 */
+            color: white; /* 텍스트 색상 */
+            padding: 10px 20px; /* 여백 */
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
+            z-index: 1000; /* 다른 요소 위에 표시 */
+            display: flex; /* 플렉스 박스 */
+            align-items: center; /* 수직 중앙 정렬 */
+            justify-content: space-between; /* 요소들 사이에 공간 배치 */
+        }
+
+        .logo {
+            font-size: 24px; /* 로고 글자 크기 */
+            font-weight: bold; /* 글자 굵기 */
+        }
+
+        .nav-menu {
+            display: flex; /* 플렉스 박스 */
+        }
+
+        .nav-item {
+            margin-left: 20px; /* 메뉴 간격 */
+            cursor: pointer; /* 커서 모양 */
+        }
+
     </style>
 </head>
 
 <body>
 
+    <!-- 플로팅 헤더 -->
+    <div class="floating-header">
+        <div class="logo">홍쌤.com</div>
+        <div class="nav-menu">
+            <div class="nav-item">홈</div>
+            <div class="nav-item">기능</div>
+            <div class="nav-item">문의</div>
+        </div>
+    </div>
+    
     <h2>누가 누가 안 했나</h2>
 
     <div class="container">
