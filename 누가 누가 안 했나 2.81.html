@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>누가 누가 안 했나?</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h2 {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+
+        }
+
+        .container {
+            max-width: 700px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container-blank {
+            max-width: 700px;
+            padding: 20px
+            background-color: #f5f5f5;;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .student-container {
+            max-width: 700px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex; /* Use flex layout for student buttons */
+            flex-wrap: wrap; /* Wrap buttons to the next row */
+            justify-content: center; /* Center align buttons horizontally */
+        }
+
+
+        #gameDescription {
+            width: 38.5%;
+            padding: 10px;
+            margin: 10px auto;
+        }
+
+        #studentName {
+            width: 56.5%;
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 25px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        button.undo-button {
+            background-color: #e74c3c;
+        }
+
+        #studentList {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        student-button {
+            padding: 15px 30px;
+            width: 50px; 
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+            display: inline-block; /* Display buttons in a row */
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        student-button:hover {
+            background-color: #FF4F4F; /* Darker background color on hover */
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .copyright a {
+            text-decoration: none;
+            color: #777;
+        }
+
+        .copyright a:hover {
+            text-decoration: underline;
+        }
+
+        /* 플로팅 버튼 스타일 */
+        #floatingButton {
+            position: fixed; /* 고정 위치 */
+            bottom: 20px;    /* 아래에서 20px */
+            right: 20px;     /* 오른쪽에서 20px */
+            width: 50px;     /* 너비 */
+            height: 50px;    /* 높이 */
+            padding: 0;      /* 안쪽 여백 없음 */
+            font-size: 24px; /* 글자 크기 */
+            border: none;    /* 테두리 없음 */
+            border-radius: 50%; /* 원형 버튼 */
+            background-color: #007bff; /* 배경색 */
+            color: white; /* 글자색 */
+            cursor: pointer; /* 커서 모양 */
+            display: flex;   /* 플렉스 박스 */
+            align-items: center; /* 수직 중앙 정렬 */
+            justify-content: center; /* 수평 중앙 정렬 */
+        }
+
+        /* 버튼 호버 효과 */
+        #floatingButton:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h2>누가 누가 안 했나</h2>
+
+    <div class="container">
+        <div>
+            <input type="text" id="gameDescription" placeholder="과제에 대한 설명 입력" oninput="updateTitle()">
+            <input type="file" id="fileInput" accept=".txt" onchange="loadFile()">
+            <input type="text" id="studentName" placeholder="학생 이름 입력">
+            <button onclick="addStudent()">학생 추가</button>
+        </div>
+
+    </div>
+
+    <div class="container-blank">
+        <div>
+            <button onclick="initialize()">초기화</button>
+            <button onclick="undoDelete()">되돌리기</button>
+            <button onclick="exportToTextFile()">내보내기</button> <!-- '저장' 버튼 이름을 '내보내기'로 변경 -->
+        </div>
+    </div>
+
+    <div class="student-container">
+        <div id="studentList">
+            <!-- 여기에 학생 이름 버튼이 동적으로 추가될 것입니다. -->
+        </div>
+    </div>
+
+    <div class="copyright">
+        &copy;<a href="https://revoirb612.notion.site/com-b57409d4fba84c17b29b13c2a90293d2?pvs=4" target="_blank"> 홍쌤.com</a>
+    </div>
+
+    <!-- 플로팅 버튼 -->
+    <div>
+        <button id="floatingButton" onclick="openNewTab()" >+</button>
+    </div>
+
+    <script>
+        var deletedStudents = [];
+
+        function addStudent() {
+            var studentNameInput = document.getElementById("studentName");
+            var studentName = studentNameInput.value;
+
+            if (studentName === "") {
+                return;
+            }
+
+            var studentList = document.getElementById("studentList");
+            var button = document.createElement("student-button");
+            button.textContent = studentName;
+            button.onclick = function () {
+                deleteStudent(button);
+            };
+            studentList.appendChild(button);
+
+            studentNameInput.value = "";
+        }
+
+        function deleteStudent(button) {
+            var studentList = document.getElementById("studentList");
+            studentList.removeChild(button);
+            deletedStudents.push(button);
+        }
+
+        function undoDelete() {
+            if (deletedStudents.length > 0) {
+                var studentList = document.getElementById("studentList");
+                var buttonToRestore = deletedStudents.pop();
+                studentList.appendChild(buttonToRestore);
+            }
+        }
+
+        function loadFile() {
+            initialize(); // 초기화 동작 추가
+
+            var fileInput = document.getElementById("fileInput");
+            var file = fileInput.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var names = e.target.result.split('\n');
+                    var gameDescription = document.getElementById("gameDescription");
+
+                    if (names.length > 0) {
+                        // Use the file name as the game description (removing the date part)
+                        var fileName = file.name.replace(/_\d{4}-\d{2}-\d{2}/, "").replace(".txt", "").trim();
+                        gameDescription.value = fileName;
+                    }
+
+                    names.forEach(function(name) {
+                        if (name.trim() !== "") {
+                            var studentList = document.getElementById("studentList");
+                            var button = document.createElement("student-button");
+                            button.textContent = name.trim();
+                            button.onclick = function () {
+                                deleteStudent(button);
+                            };
+                            studentList.appendChild(button);
+                        }
+                    });
+                };
+                reader.readAsText(file);
+            }
+        }
+
+        function exportToTextFile() {
+            var gameDescription = document.getElementById("gameDescription").value;
+            var studentList = document.getElementById("studentList");
+            var buttons = studentList.getElementsByTagName("student-button");
+            var studentNames = [];
+            for (var i = 0; i < buttons.length; i++) {
+                studentNames.push(buttons[i].textContent);
+            }
+
+            var currentDate = new Date();
+            var year = currentDate.getFullYear();
+            var month = String(currentDate.getMonth() + 1).padStart(2, '0');
+            var day = String(currentDate.getDate()).padStart(2, '0');
+            var dateString = year + '-' + month + '-' + day;
+
+            var text = studentNames.join("\n");
+            var blob = new Blob([text], { type: "text/plain" });
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = gameDescription + "_" + dateString + ".txt"; // 한국 시간에 맞게 파일 이름 생성
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function initialize() {
+            // 초기화 동작 추가
+            var gameDescription = document.getElementById("gameDescription");
+            gameDescription.value = "";
+            var studentList = document.getElementById("studentList");
+            studentList.innerHTML = "";
+        }
+
+        function updateTitle() {
+            var gameDescription = document.getElementById("gameDescription").value;
+            document.title = gameDescription;
+        }
+
+        function openNewTab() {
+            // 현재 페이지 URL을 가져와서 새 탭에서 열기
+            var currentURL = window.location.href;
+            window.open(currentURL, '_blank');
+        }
+
+    </script>
+</body>
+</html>
