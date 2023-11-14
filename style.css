@@ -1,0 +1,174 @@
+
+
+body {
+    padding-top: 60px; /* 헤더 높이만큼 여백 추가 */
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    height: 100vh;
+    text-align: center;
+}
+
+h2 {
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+
+}
+
+.container {
+    max-width: 700px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-blank {
+    max-width: 700px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.student-container {
+    max-width: 700px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex; /* Use flex layout for student buttons */
+    flex-wrap: wrap; /* Wrap buttons to the next row */
+    justify-content: center; /* Center align buttons horizontally */
+}
+
+
+#gameDescription {
+    width: 38.5%;
+    padding: 10px;
+    margin: 10px auto;
+}
+
+#studentName {
+    width: 56.5%;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 25px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px; /* Rounded corners */
+}
+
+button.undo-button {
+    background-color: #e74c3c;
+}
+
+#studentList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+student-button {
+    padding: 15px 30px;
+    width: 50px; 
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+    display: inline-block; /* Display buttons in a row */
+    border-radius: 5px; /* Rounded corners */
+}
+
+student-button:hover {
+    background-color: #FF4F4F; /* Darker background color on hover */
+}
+
+.copyright {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #777;
+}
+
+.copyright a {
+    text-decoration: none;
+    color: #777;
+}
+
+.copyright a:hover {
+    text-decoration: underline;
+}
+
+/* 플로팅 버튼 스타일 */
+#floatingButton {
+    position: fixed; /* 고정 위치 */
+    bottom: 20px;    /* 아래에서 20px */
+    right: 20px;     /* 오른쪽에서 20px */
+    width: 50px;     /* 너비 */
+    height: 50px;    /* 높이 */
+    padding: 0;      /* 안쪽 여백 없음 */
+    font-size: 24px; /* 글자 크기 */
+    border: none;    /* 테두리 없음 */
+    border-radius: 50%; /* 원형 버튼 */
+    background-color: #007bff; /* 배경색 */
+    color: white; /* 글자색 */
+    cursor: pointer; /* 커서 모양 */
+    display: flex;   /* 플렉스 박스 */
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+}
+
+/* 버튼 호버 효과 */
+#floatingButton:hover {
+    background-color: #0056b3;
+}
+
+/* 플로팅 헤더 스타일 */
+.floating-header {
+    position: fixed; /* 고정 위치 */
+    top: 0; /* 상단에 위치 */
+    left: 0;
+    right: 0;
+    background-color: #3498db; /* 배경색 */
+    color: white; /* 텍스트 색상 */
+    padding: 10px 20px; /* 여백 */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
+    display: flex; /* 플렉스 박스 */
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: space-between; /* 요소들 사이에 공간 배치 */
+}
+
+.logo {
+    font-size: 24px; /* 로고 글자 크기 */
+    font-weight: bold; /* 글자 굵기 */
+}
+
+.nav-menu {
+    display: flex; /* 플렉스 박스 */
+}
+
+.nav-item {
+    margin-left: 20px; /* 메뉴 간격 */
+    cursor: pointer; /* 커서 모양 */
+}
