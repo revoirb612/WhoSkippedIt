@@ -143,32 +143,45 @@ student-button:hover {
     background-color: #0056b3;
 }
 
-/* 플로팅 헤더 스타일 */
+/* Enhanced Floating Header Style */
 .floating-header {
-    position: fixed; /* 고정 위치 */
-    top: 0; /* 상단에 위치 */
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
-    background-color: #3498db; /* 배경색 */
-    color: white; /* 텍스트 색상 */
-    padding: 10px 20px; /* 여백 */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
-    z-index: 1000; /* 다른 요소 위에 표시 */
-    display: flex; /* 플렉스 박스 */
-    align-items: center; /* 수직 중앙 정렬 */
-    justify-content: space-between; /* 요소들 사이에 공간 배치 */
+    background-color: #3498db; /* Vibrant blue background */
+    color: white;
+    padding: 15px 30px; /* Increased padding for more space */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow effect */
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Arial', sans-serif; /* Modern, readable font */
 }
 
 .logo {
-    font-size: 24px; /* 로고 글자 크기 */
-    font-weight: bold; /* 글자 굵기 */
+    font-size: 26px; /* Larger size for emphasis */
+    font-weight: bold;
+    cursor: pointer; /* Indicates the logo is interactive */
 }
 
 .nav-menu {
-    display: flex; /* 플렉스 박스 */
+    display: flex;
+    align-items: center; /* Vertically align menu items */
 }
 
 .nav-item {
-    margin-left: 20px; /* 메뉴 간격 */
-    cursor: pointer; /* 커서 모양 */
+    margin-left: 25px; /* Spacing between menu items */
+    padding: 8px 12px; /* Padding for a button-like appearance */
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px; /* Rounded corners for a modern look */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+}
+
+.nav-item:hover {
+    background-color: #1e7ac9; /* Darker blue on hover for contrast */
+    color: #fff;
 }
