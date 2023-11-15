@@ -1,78 +1,60 @@
+User
 <!DOCTYPE html>
 <html>
 <head>
     <title>홍쌤.com</title>
-
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- Your existing CSS file -->
+    <!-- CSS 파일 링크 -->
     <link rel="stylesheet" type="text/css" href="style.css">
-    
+
 </head>
 
 <body>
 
-    <!-- Bootstrap Container -->
-    <div class="container-fluid">
-
-        <!-- Floating Header using Bootstrap Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">누가 누가 안 했나</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">홈</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">기능</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">문의</a></li>
-                </ul>
-            </div>
-        </nav>
-
-        <div class="container">
-            <div>
-                <input type="text" id="gameDescription" placeholder="과제에 대한 설명 입력" oninput="updateTitle()">
-                <input type="file" id="fileInput" accept=".txt" onchange="loadFile()">
-                <input type="text" id="studentName" placeholder="학생 이름 입력">
-                <button onclick="addStudent()">학생 추가</button>
-            </div>
-
+    <!-- 플로팅 헤더 -->
+    <div class="floating-header">
+        <div class="logo">홍쌤.com</div>
+        <div class="nav-menu">
+            <div class="nav-item">홈</div>
+            <div class="nav-item">기능</div>
+            <div class="nav-item">문의</div>
         </div>
+    </div>
 
-        <div class="container-blank">
-            <div>
-                <button onclick="initialize()">초기화</button>
-                <button onclick="undoDelete()">되돌리기</button>
-                <button onclick="exportToTextFile()">내보내기</button> <!-- '저장' 버튼 이름을 '내보내기'로 변경 -->
-            </div>
-        </div>
-
-        <div class="student-container">
-            <div id="studentList">
-                <!-- 여기에 학생 이름 버튼이 동적으로 추가될 것입니다. -->
-            </div>
-        </div>
-
-        <div class="copyright">
-            &copy;<a href="https://revoirb612.notion.site/com-b57409d4fba84c17b29b13c2a90293d2?pvs=4" target="_blank"> 홍쌤.com</a>
-        </div>
-
-        <!-- 플로팅 버튼 -->
+    <div class="container">
         <div>
-            <button id="floatingButton" onclick="openNewTab()" >+</button>
+            <input type="text" id="gameDescription" placeholder="과제에 대한 설명 입력" oninput="updateTitle()">
+            <input type="file" id="fileInput" accept=".txt" onchange="loadFile()">
+            <input type="text" id="studentName" placeholder="학생 이름 입력">
+            <button onclick="addStudent()">학생 추가</button>
         </div>
 
     </div>
+
+    <div class="container-blank">
+        <div>
+            <button onclick="initialize()">초기화</button>
+            <button onclick="undoDelete()">되돌리기</button>
+            <button onclick="exportToTextFile()">내보내기</button> <!-- '저장' 버튼 이름을 '내보내기'로 변경 -->
+        </div>
+    </div>
+
+    <div class="student-container">
+        <div id="studentList">
+            <!-- 여기에 학생 이름 버튼이 동적으로 추가될 것입니다. -->
+        </div>
+    </div>
+
+    <div class="copyright">
+        &copy;<a href="https://revoirb612.notion.site/com-b57409d4fba84c17b29b13c2a90293d2?pvs=4" target="_blank"> 홍쌤.com</a>
+    </div>
+
+    <!-- 플로팅 버튼 -->
+    <div>
+        <button id="floatingButton" onclick="openNewTab()" >+</button>
+    </div>
     
-    <!-- Bootstrap JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Your existing JavaScript file -->
+    <!-- JavaScript 파일 링크 -->
     <script src="script.js"></script>
-
+    
 </body>
 </html>
