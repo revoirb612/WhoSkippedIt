@@ -20,7 +20,7 @@ input[type="text"]::placeholder {
 }
 
 .container-chat {
-    max-width: 500px;
+    max-width: 720px;
     padding: 5px;
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -76,7 +76,7 @@ input[type="text"]::placeholder {
 }
 
 .container-student {
-    max-width: 700px;
+    max-width: 720px;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
