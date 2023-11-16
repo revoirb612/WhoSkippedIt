@@ -58,7 +58,7 @@ input[type="text"]::placeholder {
 }
 
 .container-blank {
-    max-width: 700px;
+    max-width: 720px;
     padding: 20px;
     background-color: #f5f5f5;
     border-radius: 5px;
