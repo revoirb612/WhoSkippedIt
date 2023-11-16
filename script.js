@@ -18,12 +18,16 @@ function addStudent() {
     studentList.appendChild(button);
 
     studentNameInput.value = "";
+
+    checkAndDisplayEmptyMessage(); // 목록 업데이트 후 호출    
 }
 
 function deleteStudent(button) {
     var studentList = document.getElementById("studentList");
     studentList.removeChild(button);
     deletedStudents.push(button);
+
+    checkAndDisplayEmptyMessage(); // 목록 업데이트 후 호출
 }
 
 function undoDelete() {
@@ -134,4 +138,23 @@ function downloadExampleFile() {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+}
+
+function checkAndDisplayEmptyMessage() {
+    var studentList = document.getElementById("studentList");
+    var isEmpty = studentList.children.length === 0;
+    var emptyMessageElement = document.getElementById("emptyMessage");
+
+    if (isEmpty) {
+        if (!emptyMessageElement) {
+            emptyMessageElement = document.createElement("div");
+            emptyMessageElement.id = "emptyMessage";
+            emptyMessageElement.textContent = "비어있습니다";
+            studentList.appendChild(emptyMessageElement);
+        }
+    } else {
+        if (emptyMessageElement) {
+            studentList.removeChild(emptyMessageElement);
+        }
+    }
 }
