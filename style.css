@@ -178,7 +178,6 @@ student-button:hover {
 
 .nav-menu {
     display: flex;
-    flex-wrap: wrap; /* 요소들이 필요할 때 다음 줄로 넘어갈 수 있도록 함 */
     align-items: center; /* Vertically align menu items */
 }
 
