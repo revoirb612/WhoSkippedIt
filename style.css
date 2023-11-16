@@ -1,7 +1,7 @@
 
 
 body {
-    padding-top: 100px; /* 헤더 높이만큼 여백 추가 */
+    padding-top: 80px; /* 헤더 높이만큼 여백 추가 */
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
     margin: 0;
@@ -9,12 +9,10 @@ body {
     text-align: center;
 }
 
-h2 {
-    background-color: #3498db;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-
+input[type="text"] {
+    border: none; /* 테두리 제거 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    /* 추가 스타일 (예: padding, font-size, background-color 등) */
 }
 
 .container {
