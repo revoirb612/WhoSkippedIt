@@ -83,7 +83,7 @@ input[type="text"]::placeholder {
 }
 
 button {
-    padding: 10px 25px;
+    padding: 10px 5px;
     background-color: #3498db;
     color: #fff;
     border: none;
