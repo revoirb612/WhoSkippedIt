@@ -19,8 +19,8 @@ input[type="text"]::placeholder {
     /* 추가적으로 필요한 스타일 (예: 색상, 글꼴 등) */
 }
 
-.container {
-    max-width: 500px;
+.container-chat {
+    max-width: 450px;
     padding: 5px;
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
