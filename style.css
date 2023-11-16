@@ -29,7 +29,7 @@ input[type="text"]::placeholder {
     margin-left: auto;
     margin-right: auto;
     position: fixed; /* 컨테이너를 고정 위치에 배치 */
-    bottom: 10px; /* 하단에서 10px 위에 위치 */
+    bottom: 40px; /* 하단에서 40px 위에 위치 */
     left: 0; /* 왼쪽 정렬 */
     right: 0; /* 오른쪽 정렬 */
     z-index: 1000; /* 다른 요소들 위에 표시 */
