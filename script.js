@@ -111,3 +111,27 @@ function openNewTab() {
     window.open(currentURL, '_blank');
 }
 
+function downloadExampleFile() {
+    var exampleStudents = [
+        "김연아",
+        "제이홉",
+        "박지성",
+        "손흥민",
+        "홍승일",
+        "방탄",
+        "박보검",
+        "아이브",
+        "이유진",
+        "장원영",
+        // ... 다른 학생 이름들 추가 가능
+    ];
+
+    var text = exampleStudents.join("\n");
+    var blob = new Blob([text], { type: "text/plain" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "example_students.txt"; 
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
