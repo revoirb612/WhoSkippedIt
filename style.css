@@ -105,7 +105,7 @@ input[type="text"]::placeholder {
 }
 
 button {
-    padding: 10px 10px;
+    padding: 10px 20px;
     background-color: #3498db;
     white-space: nowrap; /* 텍스트를 한 줄로 유지 */
     overflow: hidden; /* 넘치는 텍스트 숨김 */
@@ -213,7 +213,7 @@ student-button:hover {
 }
 
 .nav-menu button {
-    min-width: 100px; /* 버튼의 최소 너비 설정 */
+    min-width: 80px; /* 버튼의 최소 너비 설정 */
     white-space: nowrap; /* 텍스트를 한 줄로 유지 */
     overflow: hidden; /* 넘치는 텍스트 숨김 */
     text-overflow: ellipsis; /* 넘치는 텍스트 대신 말줄임표 표시 */
