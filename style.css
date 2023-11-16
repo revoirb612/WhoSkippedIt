@@ -91,9 +91,9 @@ input[type="text"]::placeholder {
 
 
 #gameDescription {
-    width: 38.5%;
+    width: 30%;
     padding: 10px;
-    margin: 10px auto;
+    margin: 0px auto;
 }
 
 #studentName {
