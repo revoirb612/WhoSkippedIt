@@ -16,7 +16,7 @@
             <input type="file" id="fileInput" accept=".txt" onchange="loadFile()">
             <input type="text" id="gameDescription" placeholder="과제 내용(파일명)" oninput="updateTitle()">
             <button onclick="exportToTextFile()">내보내기</button>
-            <button onclick="downloadExampleFile()">예시</button>
+            <button onclick="openNewTab()">+새탭</button>
         </div>
     </div>
 
@@ -41,11 +41,11 @@
 
     <!-- 플로팅 버튼 -->
     <div>
-        <button id="floatingButton" onclick="openNewTab()" >?</button>
+        <button id="floatingButton" onclick="downloadExampleFile()">?</button>
     </div>
     
     <!-- JavaScript 파일 링크 -->
     <script src="script.js"></script>
     
-</body>
+</body
 </html>
