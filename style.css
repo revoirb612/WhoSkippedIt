@@ -74,7 +74,7 @@ button {
     color: #fff;
     border: none;
     cursor: pointer;
-    margin: 5px;
+    margin: 0px;
     border-radius: 5px; /* Rounded corners */
 }
 
