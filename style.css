@@ -91,6 +91,30 @@ input[type="text"]::placeholder {
     justify-content: center;
 }
 
+#studentList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+student-button {
+    padding: 15px 30px;
+    width: 134px; /* 수정된 너비 */
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+    display: inline-block; /* Display buttons in a row */
+    border-radius: 5px; /* Rounded corners */
+}
+
+student-button:hover {
+    background-color: #FF4F4F; /* Darker background color on hover */
+}
+
+
+
 
 #gameDescription {
     width: 30%;
@@ -125,29 +149,6 @@ button:hover {
 button.undo-button {
     background-color: #e74c3c;
 }
-
-#studentList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-student-button {
-    padding: 15px 30px;
-    width: 50px; 
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    margin: 5px;
-    display: inline-block; /* Display buttons in a row */
-    border-radius: 5px; /* Rounded corners */
-}
-
-student-button:hover {
-    background-color: #FF4F4F; /* Darker background color on hover */
-}
-
 
 
 /* 플로팅 버튼 스타일 */
