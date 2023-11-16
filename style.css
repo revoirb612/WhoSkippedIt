@@ -210,6 +210,24 @@ student-button:hover {
     transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
 }
 
+.nav-menu button {
+    min-width: 100px; /* 버튼의 최소 너비 설정 */
+    white-space: nowrap; /* 텍스트를 한 줄로 유지 */
+    overflow: hidden; /* 넘치는 텍스트 숨김 */
+    text-overflow: ellipsis; /* 넘치는 텍스트 대신 말줄임표 표시 */
+    margin-left: 10px; /* 버튼 간격 조정 */
+}
+
+.nav-menu input[type="text"] {
+    min-width: 150px; /* 입력 필드의 최소 너비 설정 */
+    margin-left: 10px; /* 입력 필드 간격 조정 */
+}
+
+.nav-menu input[type="file"] {
+    min-width: 90px; /* 파일 입력 필드의 최소 너비 설정 */
+    margin-left: 10px; /* 파일 입력 필드 간격 조정 */
+}
+
 .nav-item:hover {
     background-color: #1e7ac9; /* Darker blue on hover for contrast */
     color: #fff;
