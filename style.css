@@ -107,6 +107,8 @@ input[type="text"]::placeholder {
 button {
     padding: 10px 10px;
     background-color: #3498db;
+    white-space: nowrap; /* 텍스트를 한 줄로 유지 */
+    overflow: hidden; /* 넘치는 텍스트 숨김 */
     color: #fff;
     border: none;
     cursor: pointer;
