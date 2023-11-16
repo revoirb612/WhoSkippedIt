@@ -15,7 +15,7 @@
         <div class="nav-menu">
             <input type="file" id="fileInput" accept=".txt" onchange="loadFile()">
             <input type="text" id="gameDescription" placeholder="과제에 대한 설명" oninput="updateTitle()">
-            <button onclick="exportToTextFile()">저장</button>
+            <button onclick="exportToTextFile()">내보내기</button>
             <button onclick="downloadExampleFile()">예시</button>
         </div>
     </div>
@@ -40,7 +40,7 @@
 
     <!-- 플로팅 버튼 -->
     <div>
-        <button id="floatingButton" onclick="openNewTab()" >+</button>
+        <button id="floatingButton" onclick="openNewTab()" >?</button>
     </div>
     
     <!-- JavaScript 파일 링크 -->
