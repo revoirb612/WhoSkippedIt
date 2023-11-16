@@ -46,6 +46,13 @@ input[type="text"]::placeholder {
     margin-right: auto;
 }
 
+.center-container {
+    display: flex; /* Flexbox 레이아웃 사용 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    height: 100vh; /* 뷰포트 높이에 맞춤 */
+}
+
 .student-container {
     max-width: 700px;
     padding: 20px;
@@ -57,9 +64,9 @@ input[type="text"]::placeholder {
     margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
-    display: flex; /* Use flex layout for student buttons */
-    flex-wrap: wrap; /* Wrap buttons to the next row */
-    justify-content: center; /* Center align buttons horizontally */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 
