@@ -185,7 +185,6 @@ button.undo-button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family: 'Arial', sans-serif; /* Modern, readable font */
 }
 
 .logo {
