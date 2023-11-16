@@ -13,6 +13,7 @@
     <div class="floating-header">
         <div class="logo">누가 누가 안 했나</div>     
         <div class="nav-menu">
+            <input type="file" id="fileInput" accept=".txt" onchange="loadFile()">
             <input type="text" id="gameDescription" placeholder="과제에 대한 설명" oninput="updateTitle()">
             <button onclick="exportToTextFile()">내보내기</button>
             <button onclick="downloadExampleFile()">예시파일</button>
@@ -31,7 +32,6 @@
 
     <div class="container-chat"
         <div>
-            <input type="file" id="fileInput" accept=".txt" onchange="loadFile()">
             <input type="text" id="studentName" placeholder="이름 또는 내용 입력">
             <button onclick="addStudent()">버튼추가</button>
             <button onclick="undoDelete()">실행취소</button>
