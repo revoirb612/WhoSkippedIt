@@ -88,7 +88,7 @@ input[type="text"]::placeholder {
 
 student-button {
     padding: 15px 30px;
-    width: 134px; /* 수정된 너비 */
+    width: 120px; /* 수정된 너비 */
     background-color: #3498db;
     color: #fff;
     border: none;
