@@ -9,6 +9,7 @@ body {
 
 input[type="text"] {
     border: none; /* 테두리 제거 */
+    width: 400px; /* 테두리 제거 */
     display: flex; /* Flexbox 레이아웃 사용 */
     text-align: center; /* 텍스트 가운데 정렬 */
     /* 추가 스타일 (예: padding, font-size, background-color 등) */
