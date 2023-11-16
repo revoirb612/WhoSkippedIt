@@ -16,6 +16,8 @@
             <a href="https://revoirb612.notion.site/2023-0fb47ca0d3b34a40bea841552af8b1d5" class="nav-item">더불어숲 2023</a>
             <a href="https://github.com/revoirb612/WhoSkippedIt" class="nav-item">깃허브</a>
             <a href="https://chat.openai.com/" class="nav-item">ChatGPT</a>
+            <div class="nav-item" onclick="initialize()">초기화</div>
+            <div class="nav-item" onclick="undoDelete()">되돌리기</div>
             <div class="nav-item" onclick="downloadExampleFile()">예시파일</div>
             <div class="nav-item" onclick="exportToTextFile()">내보내기</div>
             <div class="nav-item" onclick="openNewTab()">새 탭</div>
@@ -29,10 +31,6 @@
             <input type="text" id="studentName" placeholder="학생 이름 입력">
             <button onclick="addStudent()">학생 추가</button>
         </div>      
-        <div>
-            <button onclick="initialize()">초기화</button>
-            <button onclick="undoDelete()">되돌리기</button>
-        </div>
     </div>
 
     <div class="student-container">
