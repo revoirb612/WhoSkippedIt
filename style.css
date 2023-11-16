@@ -15,6 +15,11 @@ input[type="text"] {
     /* 추가 스타일 (예: padding, font-size, background-color 등) */
 }
 
+input[type="text"]::placeholder {
+    text-align: center; /* 가운데 정렬 */
+    /* 추가적으로 필요한 스타일 (예: 색상, 글꼴 등) */
+}
+
 .container {
     max-width: 700px;
     padding: 20px;
@@ -173,6 +178,7 @@ student-button:hover {
 
 .nav-menu {
     display: flex;
+    flex-wrap: wrap; /* 요소들이 필요할 때 다음 줄로 넘어갈 수 있도록 함 */
     align-items: center; /* Vertically align menu items */
 }
 
