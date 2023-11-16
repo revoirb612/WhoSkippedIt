@@ -24,12 +24,16 @@
             <!-- 여기에 학생 이름 버튼이 동적으로 추가될 것입니다. -->
         </div>
     </div>
-    
 
+    <div class="container-blank">
+        <button onclick="undoDelete()">실행취소</button> 
+        <button onclick="undoDelete()">초기화</button> 
+        <button onclick="undoDelete()">새 탭</button> 
+    </div>
+    
     <div class="container-chat">
         <input type="text" id="studentName" placeholder="이름 또는 내용 입력">
-        <button onclick="addStudent()">버튼추가</button>
-        <button onclick="undoDelete()">실행취소</button> 
+        <button onclick="addStudent()">추가</button>
     </div>    
 
     <div class="copyright">
