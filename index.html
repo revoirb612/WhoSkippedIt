@@ -15,7 +15,6 @@
         <div class="nav-menu">
             <input type="file" id="fileInput" accept=".txt" onchange="loadFile()">
             <button onclick="downloadExampleFile()">예시파일</button>
-            <button onclick="undoDelete()">실행취소</button>
             <button onclick="exportToTextFile()">내보내기</button>
           <input type="text" id="gameDescription" placeholder="과제에 대한 설명" oninput="updateTitle()">
         </div>
@@ -40,7 +39,8 @@
     <div class="container-chat"
         <div>
             <input type="text" id="studentName" placeholder="이름 또는 내용 입력">
-            <button onclick="addStudent()">버튼 추가</button>
+            <button onclick="addStudent()">버튼추가</button>
+            <button onclick="undoDelete()">실행취소</button>
         </div>              
     </div>    
 
