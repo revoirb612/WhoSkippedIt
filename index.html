@@ -22,6 +22,9 @@
         </div>
     </div>
 
+    <div>
+        <input type="text" id="gameDescription" placeholder="과제에 대한 설명 입력" oninput="updateTitle()">
+    </div>      
    
     <div class="student-container">
         <div id="studentList">
@@ -29,15 +32,10 @@
         </div>
     </div>
     
-    <div class="container-blank">
-        <div>
-            <input type="text" id="gameDescription" placeholder="과제에 대한 설명 입력" oninput="updateTitle()">
-        </div>      
-        <div>
-            <input type="text" id="studentName" placeholder="학생 이름 입력">
-            <button onclick="addStudent()">학생 추가</button>
-        </div>              
-    </div>
+    <div>
+        <input type="text" id="studentName" placeholder="학생 이름 입력">
+        <button onclick="addStudent()">학생 추가</button>
+    </div>              
     
     <div class="copyright">
         &copy;<a href="https://revoirb612.notion.site/com-b57409d4fba84c17b29b13c2a90293d2?pvs=4" target="_blank"> 홍쌤.com</a>
