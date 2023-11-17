@@ -29,43 +29,42 @@
         <!-- 페이지 내용 -->
         <div id="page-content-wrapper">
             <!-- 여기에 기존 페이지 내용 -->
+            <!-- 플로팅 헤더 -->
+            <div class="floating-header">
+                <div class="logo">누가 누가 안 했나</div>     
+                <div class="nav-menu">
+                    <input type="file" id="fileInput" accept=".txt" onchange="loadFile()">
+                    <input type="text" id="gameDescription" placeholder="과제 내용(파일명)" oninput="updateTitle()">
+                    <button onclick="exportToTextFile()">내보내기</button>
+                </div>
+            </div>
+        
+            <div class="container-student">
+                <div id="studentList">
+                    <!-- 여기에 학생 이름 버튼이 동적으로 추가될 것입니다. -->
+                </div>
+            </div>
+        
+            <div class="container-blank">
+                <button onclick="undoDelete()">실행취소</button> 
+                <button onclick="initialize()">초기화</button> 
+                <button onclick="openNewTab()">새 탭 추가</button> 
+            </div>
+            
+            <div class="container-chat">
+                <input type="text" id="studentName" placeholder="이름 또는 내용 입력">
+                <button onclick="addStudent()">버튼추가</button>
+            </div>    
+        
+            <div class="copyright">
+                &copy;<a href="https://revoirb612.notion.site/com-b57409d4fba84c17b29b13c2a90293d2?pvs=4" target="_blank"> 홍쌤.com</a>
+            </div>
+        
+            <!-- 플로팅 버튼 -->
+            <div>
+                <button id="floatingButton" onclick="window.open('https://indischool.com/boards/libClass/37370017', '_blank');">?</button>
+            </div>
         </div>
-    </div>
-    
-    <!-- 플로팅 헤더 -->
-    <div class="floating-header">
-        <div class="logo">누가 누가 안 했나</div>     
-        <div class="nav-menu">
-            <input type="file" id="fileInput" accept=".txt" onchange="loadFile()">
-            <input type="text" id="gameDescription" placeholder="과제 내용(파일명)" oninput="updateTitle()">
-            <button onclick="exportToTextFile()">내보내기</button>
-        </div>
-    </div>
-
-    <div class="container-student">
-        <div id="studentList">
-            <!-- 여기에 학생 이름 버튼이 동적으로 추가될 것입니다. -->
-        </div>
-    </div>
-
-    <div class="container-blank">
-        <button onclick="undoDelete()">실행취소</button> 
-        <button onclick="initialize()">초기화</button> 
-        <button onclick="openNewTab()">새 탭 추가</button> 
-    </div>
-    
-    <div class="container-chat">
-        <input type="text" id="studentName" placeholder="이름 또는 내용 입력">
-        <button onclick="addStudent()">버튼추가</button>
-    </div>    
-
-    <div class="copyright">
-        &copy;<a href="https://revoirb612.notion.site/com-b57409d4fba84c17b29b13c2a90293d2?pvs=4" target="_blank"> 홍쌤.com</a>
-    </div>
-
-    <!-- 플로팅 버튼 -->
-    <div>
-        <button id="floatingButton" onclick="window.open('https://indischool.com/boards/libClass/37370017', '_blank');">?</button>
     </div>
 
     <!-- 부트스트랩 JS 추가 -->
