@@ -54,6 +54,7 @@ student-button {
     width: 90px; /* 수정된 너비 */
     background-color: #3498db;
     color: #fff;
+    font-size: 20px;
     border: none;
     cursor: pointer;
     margin: 5px;
