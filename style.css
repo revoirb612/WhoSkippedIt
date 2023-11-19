@@ -34,7 +34,7 @@ input[type="text"]::placeholder {
 }
 
 .container-student {
-    max-width: 800px;
+    max-width: 1000px;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -57,7 +57,7 @@ input[type="text"]::placeholder {
 
 student-button {
     padding: 15px 20px;
-    width: 100px; /* 수정된 너비 */
+    width: 125px; /* 수정된 너비 */
     background-color: #3498db;
     color: #fff;
     font-size: 30px;
