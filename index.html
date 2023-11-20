@@ -69,6 +69,7 @@
 
 <script>
     $(document).ready(function () {
+        // 사이드바 토글 기능
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar, #content').toggleClass('active');
             var sidebarWidth = $('#sidebar').width();
@@ -80,8 +81,12 @@
                 $('#sidebarCollapse').css('left', '0');
             }
         });
+
+        // iframe에 초기 페이지 설정
+        $('#main-content').attr('src', 'home.html');
     });
 
+    // 페이지 로딩 함수
     function loadPage(url) {
         $('#main-content').attr('src', url);
     }
