@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>반응형 사이드바 및 전체화면 iframe 예제</title>
+    <title>누가 누가 안 했나</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> <!-- Font Awesome 추가 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -44,6 +45,15 @@
             z-index: 1000;
             transform: translateY(-50%); /* 정중앙 정렬 */
             transition: left .3s; /* 부드러운 이동 효과 */
+            border: none;
+            background-color: #007bff; /* 버튼 색상 */
+            color: white; /* 아이콘 색상 */
+            padding: 10px 15px;
+            border-radius: 50%; /* 둥근 모서리 */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 그림자 추가 */
+        }
+        #sidebarCollapse:hover {
+            background-color: #0056b3; /* 호버 시 버튼 색상 변경 */
         }
     </style>
 </head>
