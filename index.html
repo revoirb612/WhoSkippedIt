@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응형 사이드바 및 전체화면 iframe 예제</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* 스크롤 방지 */
+        }
+        #sidebar {
+            width: 250px;
+            position: fixed;
+            left: -250px;
+            top: 0;
+            height: 100vh;
+            background: #343a40;
+            color: white;
+            transition: all 0.3s;
+        }
+        #sidebar.active {
+            left: 0;
+        }
+        #content {
+            transition: margin-left .3s;
+            padding: 0; /* 여백 제거 */
+            height: 100vh; /* 높이 조정 */
+        }
+        #main-content {
+            height: 100%;
+            border: none;
+            width: 100%;
+        }
+        #sidebarCollapse {
+            position: fixed;
+            top: 50%; /* 화면의 중앙으로 위치 */
+            left: 0; /* 좌측 가장자리에 위치 */
+            z-index: 1000;
+            transform: translateY(-50%); /* 정중앙 정렬 */
+            transition: left .3s; /* 부드러운 이동 효과 */
+        }
+    </style>
+</head>
+<body>
+
+<div id="sidebar" class="bg-dark">
+    <h4 class="text-center py-2">사이드바 메뉴</h4>
+    <ul class="list-unstyled components">
+        <li><a href="#" onclick="loadPage('home.html')">홈</a></li>
+        <li><a href="#" onclick="loadPage('service.html')">서비스</a></li>
+        <li><a href="#" onclick="loadPage('contact.html')">문의</a></li>
+    </ul>
+</div>
+
+<div class="container-fluid" id="content">
+    <iframe id="main-content"></iframe>
+</div>
+
+<button type="button" id="sidebarCollapse" class="btn btn-info">
+    <span>☰</span>
+</button>
+
+<script>
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            var sidebarWidth = $('#sidebar').width();
+            if($('#sidebar').hasClass('active')){
+                $('#content').css('margin-left', sidebarWidth + 'px');
+                $('#sidebarCollapse').css('left', sidebarWidth + 'px');
+            }else{
+                $('#content').css('margin-left', '0');
+                $('#sidebarCollapse').css('left', '0');
+            }
+        });
+    });
+
+    function loadPage(url) {
+        $('#main-content').attr('src', url);
+    }
+</script>
+
+</body>
+</html>
