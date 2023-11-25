@@ -3,104 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>누가 누가 안 했나</title>
+    <title>누가 누가 안 했나 for Web</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@600&display=swap" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> <!-- Font Awesome 추가 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            overflow: hidden; /* 스크롤 방지 */
-        }
-        #sidebar {
-            width: 250px;
-            position: fixed;
-            left: -250px;
-            top: 0;
-            height: 100vh;
-            background: #343a40;
-            color: white;
-            transition: all 0.3s;
-        }
-        #sidebar.active {
-            left: 0;
-        }
-        #content {
-            transition: margin-left .3s;
-            padding: 0; /* 여백 제거 */
-            height: 100vh; /* 높이 조정 */
-        }
-        #main-content {
-            height: 100%;
-            border: none;
-            width: 100%;
-        }
-        #sidebarCollapse {
-            position: fixed;
-            top: 50%; /* 화면의 중앙으로 위치 */
-            left: 0; /* 좌측 가장자리에 위치 */
-            z-index: 1000;
-            transform: translateY(-50%); /* 정중앙 정렬 */
-            transition: left .3s; /* 부드러운 이동 효과 */
-            border: none;
-            background-color: #007bff; /* 버튼 색상 */
-            color: white; /* 아이콘 색상 */
-            padding: 10px 15px;
-            border-radius: 0; /* 둥근 모서리 제거 */
-            background-color: #343a40; /* 배경색 변경 */
-            padding: 8px 12px; /* 패딩 조정 */
-        }
-        #sidebarCollapse:hover {
-            background-color: #1d2124; /* 호버 시 색상 변경 */
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div id="sidebar" class="bg-dark">
-    <h4 class="text-center py-2">파일목록</h4>
-    <ul class="list-unstyled components">
-        <li><a href="#" onclick="loadPage('home.html')">업데이트 중</a></li>
-    </ul>
+    <h4 class="text-center py-2">템플릿 추가</h4>
+    <input type="file" id="fileInput" multiple>
+    <div id="fileButtons"></div>
+
+    <!-- Copyright 정보 추가 -->
+    <div id="copyright">
+        &copy;<a href="https://revoirb612.notion.site/com-b57409d4fba84c17b29b13c2a90293d2?pvs=4" target="_blank"> 홍쌤.com</a>
+    </div>
 </div>
 
 <div class="container-fluid" id="content">
-    <iframe id="main-content"></iframe>
+    <div id="main-content">
+        <div id="fileContentsContainer"></div>
+    </div>
 </div>
 
 <button type="button" id="sidebarCollapse" class="btn">
-    <i class="fa fa-arrow-right" id="toggleIcon"></i> <!-- 화살표 아이콘 -->
+    <i class="fa fa-arrow-right" id="toggleIcon"></i>
 </button>
 
-<script>
-    $(document).ready(function () {
-        // 사이드바 토글 기능
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar, #content').toggleClass('active');
-            var sidebarWidth = $('#sidebar').width();
-            if($('#sidebar').hasClass('active')){
-                $('#content').css('margin-left', sidebarWidth + 'px');
-                $('#sidebarCollapse').css('left', sidebarWidth + 'px');
-                $('#toggleIcon').removeClass('fa-arrow-right').addClass('fa-arrow-left'); // 아이콘 변경
-            }else{
-                $('#content').css('margin-left', '0');
-                $('#sidebarCollapse').css('left', '0');
-                $('#toggleIcon').removeClass('fa-arrow-left').addClass('fa-arrow-right'); // 아이콘 변경
-            }
-        });
+<!-- 원형 플로팅 버튼 -->
+<div class="floating-button">
+    <a href="https://indischool.com/boards/libClass/37370017" target="_blank">?</a>
+</div>
 
-        // iframe에 초기 페이지 설정
-        $('#main-content').attr('src', 'home.html');
-    });
-
-    // 페이지 로딩 함수
-    function loadPage(url) {
-        $('#main-content').attr('src', url);
-    }
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>

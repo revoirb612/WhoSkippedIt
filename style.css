@@ -1,241 +1,193 @@
-body {
-    padding-top: 0px; /* 헤더 높이만큼 여백 추가 */
-    font-family: 'Gowun Batang', serif;
-    background-color: #f5f5f5;
+body, html {
     margin: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    overflow-x: hidden; /* Disables horizontal scroll */
+    height: auto; /* Allows the height to adjust based on content */
+}
+#sidebar {
+    width: 300px;
+    position: fixed;
+    left: -300px;
+    top: 0;
     height: 100vh;
-    text-align: center;
+    background: #343a40;
+    color: white;
+    transition: left 0.3s; /* 부드러운 왼쪽 이동 효과 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* 그림자 효과 추가 */
+    padding: 20px; /* 안쪽 여백 */
+    font-size: 1em; /* 텍스트 크기 */
 }
 
-#page-content-wrapper {
+#sidebar.active {
+    left: 0; /* 활성화 시 왼쪽에 위치 */
+}
+
+#sidebarCollapse {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    z-index: 1000;
+    transform: translateY(-50%);
+    transition: left 0.3s, background-color 0.3s; /* 배경색 변경 효과 추가 */
+    border: none;
+    border-radius: 0;
+    background-color: #343a40;
+    color: white;
+    font-size: 1em; /* 텍스트 크기 조정 */
+    cursor: pointer; /* 커서 변경 */
+}
+
+#sidebarCollapse:hover {
+    background-color: #1d2124; /* 호버 시 배경색 변경 */
+}
+
+.drag-handle {
+    cursor: move;
+}
+
+.file-list-button {
+    background-color: #f2f2f2; /* 배경색 */
+    border: 1px solid #ddd; /* 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+    padding: 10px 15px; /* 안쪽 여백 */
+    margin: 5px; /* 바깥쪽 여백 */
+    cursor: pointer; /* 커서 스타일 */
+    transition: background-color 0.2s; /* 배경색 변경시 전환 효과 */
+}
+.file-list-button:hover {
+    background-color: #e6e6e6; /* 호버 시 배경색 변경 */
+}
+
+#content {
+    transition: margin-left .3s;
+    padding: 0;
+    height: 100vh;
+}
+#main-content {
+    height: 100%;
+    border: none;
     width: 100%;
-    padding: 1rem;
-    /* 필요한 스타일 추가 */
 }
-
-input[type="text"] {
-    border: none; /* 테두리 제거 */
-    width: 400px; /* 테두리 제거 */
-    display: flex; /* Flexbox 레이아웃 사용 */
-    text-align: center; /* 텍스트 가운데 정렬 */
-    /* 추가 스타일 (예: padding, font-size, background-color 등) */
+#fileContentsContainer {
+    text-align: center;
+    width: 70%;
+    margin: 0 auto; /* 상하 마진 추가 및 가운데 정렬 */
 }
-
-input[type="text"]::placeholder {
-    text-align: center; /* 가운데 정렬 */
-    /* 추가적으로 필요한 스타일 (예: 색상, 글꼴 등) */
-}
-
-.center-container {
-    display: flex; /* Flexbox 레이아웃 사용 */
-    justify-content: center; /* 수평 중앙 정렬 */
-    align-items: center; /* 수직 중앙 정렬 */
-    height: 100vh; /* 뷰포트 높이에 맞춤 */
-}
-
-.container-student {
-    max-width: 1000px;
+.file-content {
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease-in-out;
 }
 
-#studentList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.file-content:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-student-button {
-    width: 130px; /* 수정된 너비 */
-    padding: 15px 20px;
-    background-color: #3498db;
-    color: #fff;
-    font-size: 30px;
-    border: none;
+.file-input input[type="text"] {
+    width: 100%; /* 전체 너비 사용 */
+    padding: 10px; /* 패딩 추가 */
+    border: none; /* 모든 테두리 제거 */
+    border-bottom: 2px solid #ccc; /* 하단 테두리만 추가 */
+    border-radius: 0; /* 둥근 모서리 제거 */
+    box-sizing: border-box; /* box-sizing 속성 추가 */
+    font-size: 1.5em; /* 글자 크기 증가 */
+    margin-bottom: 10px; /* 아래쪽 여백 */
+    background-color: #f8f8f8; /* 배경색을 컨테이너 색과 동일하게 설정 */
+}
+
+.file-input input[type="text"]:focus {
+    border-bottom-color: #4CAF50; /* 포커스 시 하단 경계선 색상 변경 */
+    box-shadow: 0 1px 0 rgba(76, 175, 80, 0.5); /* 포커스 시 하단 그림자 효과 */
+}
+
+.line-button {
+    padding: 10px 20px; /* 패딩을 약간 늘림 */
+    font-size: 1.4em; /* 글자 크기 증가 */
+    color: #fff; /* 글자색을 흰색으로 설정 */
+    background-color: #4CAF50; /* 아이콘 버튼 색상을 참조한 배경색 */
+    border: 1px solid #357a38; /* 아이콘 버튼 색상과 조화되는 경계선 색상 */
+    border-radius: 3px;
     cursor: pointer;
-    margin: 5px;
-    display: inline-block; /* Display buttons in a row */
-    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s;
+    margin: 8px;
 }
 
-student-button:hover {
-    background-color: #FF4F4F; /* Darker background color on hover */
+.line-button:hover {
+    background-color: #357a38; /* 호버 시 배경색 변경 */
 }
 
-.container-blank {
-    max-width: 720px;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border-radius: 5px;
+.line-button:focus {
+    outline: none;
+    box-shadow: 0 0 3px #666;
+}
+
+.icon-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.icon-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.container-chat {
-    max-width: 360px;
-    padding: 5px;
-    background-color: #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    position: fixed; /* 컨테이너를 고정 위치에 배치 */
-    bottom: 60px; /* 하단에서 40px 위에 위치 */
-    left: 0; /* 왼쪽 정렬 */
-    right: 0; /* 오른쪽 정렬 */
-    z-index: 1000; /* 다른 요소들 위에 표시 */
-    display: flex; /* Flexbox 레이아웃 적용 */
-    justify-content: space-between; /* 내부 요소들을 양쪽 끝으로 정렬 */
-}
-
-.copyright {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #777;
-    position: fixed; /* 컨테이너를 고정 위치에 배치 */
-    bottom: 20px; /* 하단에서 40px 위에 위치 */
-    left: 0; /* 왼쪽 정렬 */
-    right: 0; /* 오른쪽 정렬 */
-    z-index: 1000; /* 다른 요소들 위에 표시 */
-}
-
-.copyright a {
-    text-decoration: none;
-    color: #777;
-}
-
-.copyright a:hover {
-    text-decoration: underline;
-}
-
-
-#gameDescription {
-    width: 30%;
-    padding: 10px;
-    margin: 0px auto;
-}
-
-#studentName {
-    width: 56.5%;
-    padding: 10px;
-    margin-right: 10px;
-}
-
-button {
-    padding: 10px 15px;
-    background-color: #3498db;
-    white-space: nowrap; /* 텍스트를 한 줄로 유지 */
-    overflow: hidden; /* 넘치는 텍스트 숨김 */
-    color: #fff;
+    font-size: 1.4em; /* 글자 크기 증가 */
+    padding: 10px; /* 패딩을 약간 늘림 */
+    width: 50px; /* 버튼 너비 증가 */
+    height: 50px; /* 버튼 높이 즈가 */
+    margin: 4px;
     border: none;
-    cursor: pointer;
-    margin: 0px;
-    border-radius: 5px; /* Rounded corners */
-    font-family: 'Gowun Dodum', sans-serif;
+    border-radius: 4px;
+    background-color: #f7f7f7; /* 조화를 이루는 배경색 */
 }
 
-button:hover {
-    background-color: #1e7ac9; /* 호버 시 배경색 변경 */
-    color: #fff; /* 호버 시 글자색 변경 (옵션) */
+.icon-button:hover {
+    background-color: #ddd;
+    color: #333;
 }
 
-button.undo-button {
-    background-color: #e74c3c;
+.fas {
+    font-size: 1em; /* 아이콘 크기 증가 */
+    color: #4CAF50;
 }
-
 
 /* 플로팅 버튼 스타일 */
-#floatingButton {
-    position: fixed; /* 고정 위치 */
-    bottom: 20px;    /* 아래에서 20px */
-    right: 20px;     /* 오른쪽에서 20px */
-    width: 50px;     /* 너비 */
-    height: 50px;    /* 높이 */
-    padding: 0;      /* 안쪽 여백 없음 */
-    font-size: 24px; /* 글자 크기 */
-    border: none;    /* 테두리 없음 */
-    border-radius: 50%; /* 원형 버튼 */
-    background-color: #0056b3; /* 변경된 배경색 */
-    color: white; /* 글자색 */
-    cursor: pointer; /* 커서 모양 */
-    display: flex;   /* 플렉스 박스 */
-    align-items: center; /* 수직 중앙 정렬 */
-    justify-content: center; /* 수평 중앙 정렬 */
-}
-
-/* 버튼 호버 효과 */
-#floatingButton:hover {
-    background-color: #003875; /* 호버 시 더 어두운 색상 */
-}
-
-/* Enhanced Floating Header Style */
-.floating-header {
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: #3498db; /* Vibrant blue background */
-    color: white;
-    padding: 15px 30px; /* Increased padding for more space */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow effect */
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo {
-    font-size: 26px; /* Larger size for emphasis */
-    font-weight: bold;
-    cursor: pointer; /* Indicates the logo is interactive */
-}
-
-.nav-menu {
-    display: flex;
-    align-items: center; /* Vertically align menu items */
-}
-
-.nav-item {
-    margin-left: 25px; /* Spacing between menu items */
-    padding: 8px 12px; /* Padding for a button-like appearance */
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    border-radius: 4px; /* Rounded corners for a modern look */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
-}
-
-.nav-menu button {
-    min-width: 80px; /* 버튼의 최소 너비 설정 */
-    white-space: nowrap; /* 텍스트를 한 줄로 유지 */
-    overflow: hidden; /* 넘치는 텍스트 숨김 */
-    text-overflow: ellipsis; /* 넘치는 텍스트 대신 말줄임표 표시 */
-    margin-left: 10px; /* 버튼 간격 조정 */
-}
-
-.nav-menu input[type="text"] {
-    min-width: 150px; /* 입력 필드의 최소 너비 설정 */
-    margin-left: 10px; /* 입력 필드 간격 조정 */
-}
-
-.nav-menu input[type="file"] {
-    min-width: 90px; /* 파일 입력 필드의 최소 너비 설정 */
-    margin-left: 10px; /* 파일 입력 필드 간격 조정 */
-}
-
-.nav-item:hover {
-    background-color: #1e7ac9; /* Darker blue on hover for contrast */
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50;
     color: #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 24px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.floating-button a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+}
+
+.floating-button:hover {
+    background-color: #357a38;
+}
+
+/* Copyright 스타일 지정 */
+#copyright {
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 0;
 }
