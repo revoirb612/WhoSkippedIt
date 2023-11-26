@@ -51,8 +51,7 @@ function checkFileContentsContainer() {
     if (container.children().length === 0) {
         var emptyMessage = $('<div/>', {
             id: 'emptyContainerMessage',
-            // 이전 CSS 설정은 제거하고, 새로운 설정을 적용합니다.
-            text: '파일을 추가하여 템플릿 버튼을 생성하세요.'
+            text: '누가 누가 안 했나 for Web'
         });
 
         container.append(emptyMessage);
@@ -61,20 +60,23 @@ function checkFileContentsContainer() {
     }
 }
 
-
-
-// Create a button for each file
 function createFileButton(file) {
     var button = document.createElement('button');
-    // 파일 이름에서 확장자 제거
     var fileNameWithoutExtension = file.name.replace(/\.[^/.]+$/, "");
-    button.textContent = fileNameWithoutExtension;
+
+    var icon = document.createElement('i');
+    icon.className = 'fas fa-file-alt';
+
+    var textSpan = document.createElement('span');
+    textSpan.textContent = fileNameWithoutExtension;
+
+    button.appendChild(icon);
+    button.appendChild(textSpan);
 
     button.onclick = function () {
         displayFileContent(file);
     };
 
-    // 버튼에 고유한 클래스 추가
     button.classList.add('file-list-button');
 
     return button;
@@ -256,4 +258,16 @@ function addContent(fileIndex, contentButtons) {
         contentButtons.appendChild(lineContainer);
         fileData[fileIndex].originalContent.push(newContent);
     }
+}
+
+function downloadFile(filename, content) {
+    var blob = new Blob([content], {type: "text/plain"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
 }

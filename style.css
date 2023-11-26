@@ -1,21 +1,43 @@
 body, html {
     margin: 0;
     font-family: 'Noto Sans KR', sans-serif;
-    overflow-x: hidden; /* Disables horizontal scroll */
-    height: auto; /* Allows the height to adjust based on content */
+    overflow-x: hidden; /* 가로 스크롤 비활성화 */
+    height: auto; /* 내용에 따라 높이 조정 */
+    background-color: #474f57; /* 사이드바보다 조금 밝은 배경색 */
+    color: #fff; /* 텍스트 색상을 밝게 설정 */
+    /* 기타 스타일 */
 }
+
+/* 전체 페이지의 스크롤바 스타일 */
+body::-webkit-scrollbar, html::-webkit-scrollbar {
+    width: 10px; /* 스크롤바 너비 */
+}
+
+/* 스크롤바 핸들 */
+body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
+    background: #888; /* 스크롤바 색상 */
+    border-radius: 5px; /* 둥근 모서리 */
+}
+
+/* 스크롤바 핸들 호버 */
+body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
+    background: #555; /* 호버 시 색상 */
+}
+
 #sidebar {
     width: 300px;
+    height: 100vh;
+    padding: 18.5px; /* 안쪽 여백 */
     position: fixed;
     left: -300px;
     top: 0;
-    height: 100vh;
     background: #343a40;
     color: white;
     transition: left 0.3s; /* 부드러운 왼쪽 이동 효과 */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* 그림자 효과 추가 */
-    padding: 20px; /* 안쪽 여백 */
     font-size: 1em; /* 텍스트 크기 */
+    overflow-y: auto; /* 세로 스크롤바 추가 */
+    overflow-x: hidden; /* 가로 스크롤바 숨김 */
 }
 
 #sidebar.active {
@@ -41,21 +63,46 @@ body, html {
     background-color: #1d2124; /* 호버 시 배경색 변경 */
 }
 
+/* 사이드바의 스크롤바 전체 스타일 */
+#sidebar::-webkit-scrollbar {
+    width: 10px; /* 스크롤바 너비 */
+}
+
+/* 스크롤바 핸들 */
+#sidebar::-webkit-scrollbar-thumb {
+    background: #888; /* 스크롤바 색상 */
+    border-radius: 5px; /* 둥근 모서리 */
+}
+
+/* 스크롤바 핸들 호버 */
+#sidebar::-webkit-scrollbar-thumb:hover {
+    background: #555; /* 호버 시 색상 */
+}
+
 .drag-handle {
     cursor: move;
 }
+.drag-handle:hover {
+    color: #555; /* 호버 시 색상 변경 */
+}
 
 .file-list-button {
+    display: flex;       /* Flexbox 레이아웃 적용 */
+    width: 100%;        /* 버튼의 너비를 사이드바의 너비에 맞춤 */
+    align-items: center; /* 아이콘과 텍스트를 중앙 정렬 */
+    text-align: left;    /* 텍스트를 왼쪽 정렬 */
     background-color: #f2f2f2; /* 배경색 */
     border: 1px solid #ddd; /* 테두리 */
     border-radius: 5px; /* 둥근 모서리 */
     padding: 10px 15px; /* 안쪽 여백 */
-    margin: 5px; /* 바깥쪽 여백 */
-    cursor: pointer; /* 커서 스타일 */
     transition: background-color 0.2s; /* 배경색 변경시 전환 효과 */
+    cursor: pointer; /* 커서 스타일 */
+    margin: 10px 5px; /* 바깥쪽 여백 */
 }
-.file-list-button:hover {
-    background-color: #e6e6e6; /* 호버 시 배경색 변경 */
+
+.file-list-button i {
+    font-size: 24px;     /* 아이콘 크기 조정 */
+    margin-right: 10px;  /* 아이콘과 텍스트 간의 간격 */
 }
 
 #content {
@@ -70,7 +117,7 @@ body, html {
 }
 #fileContentsContainer {
     text-align: center;
-    width: 70%;
+    width: 65%;
     margin: 0 auto; /* 상하 마진 추가 및 가운데 정렬 */
 }
 .file-content {
@@ -93,7 +140,7 @@ body, html {
     border-bottom: 2px solid #ccc; /* 하단 테두리만 추가 */
     border-radius: 0; /* 둥근 모서리 제거 */
     box-sizing: border-box; /* box-sizing 속성 추가 */
-    font-size: 1.5em; /* 글자 크기 증가 */
+    font-size: 1.2em; /* 글자 크기 증가 */
     margin-bottom: 10px; /* 아래쪽 여백 */
     background-color: #f8f8f8; /* 배경색을 컨테이너 색과 동일하게 설정 */
 }
@@ -104,11 +151,11 @@ body, html {
 }
 
 .line-button {
-    padding: 10px 20px; /* 패딩을 약간 늘림 */
-    font-size: 1.4em; /* 글자 크기 증가 */
-    color: #fff; /* 글자색을 흰색으로 설정 */
-    background-color: #4CAF50; /* 아이콘 버튼 색상을 참조한 배경색 */
-    border: 1px solid #357a38; /* 아이콘 버튼 색상과 조화되는 경계선 색상 */
+    padding: 10px 20px; /* 패딩 */
+    font-size: 1.4em; /* 글자 크기 */
+    color: #fff; /* 글자색 */
+    background-color: #4CAF50; /* 버튼 배경색 */
+    border: 2px solid #357a38; /* 더 굵은 테두리와 조화로운 색상 */
     border-radius: 3px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -117,11 +164,6 @@ body, html {
 
 .line-button:hover {
     background-color: #357a38; /* 호버 시 배경색 변경 */
-}
-
-.line-button:focus {
-    outline: none;
-    box-shadow: 0 0 3px #666;
 }
 
 .icon-button-container {
@@ -153,7 +195,7 @@ body, html {
 }
 
 .fas {
-    font-size: 1em; /* 아이콘 크기 증가 */
+    font-size: 0.8em; /* 아이콘 크기 증가 */
     color: #4CAF50;
 }
 
@@ -165,11 +207,11 @@ body, html {
     background-color: #4CAF50;
     color: #fff;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     text-align: center;
-    line-height: 60px;
-    font-size: 24px;
+    line-height: 40px;
+    font-size: 18px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
