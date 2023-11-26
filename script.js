@@ -32,6 +32,9 @@ $(document).ready(function () {
 
     // Initialize sortable container
     $("#fileContentsContainer").sortable();
+
+    // Check if fileContentsContainer is empty and display a message if it is
+    checkFileContentsContainer();
 });
 
 // Global file data array
@@ -41,6 +44,24 @@ var fileData = [];
 function loadPage(url) {
     $('#main-content').load(url);
 }
+
+// Function to check if fileContentsContainer is empty and display a message
+function checkFileContentsContainer() {
+    var container = $("#fileContentsContainer");
+    if (container.children().length === 0) {
+        var emptyMessage = $('<div/>', {
+            id: 'emptyContainerMessage',
+            // 이전 CSS 설정은 제거하고, 새로운 설정을 적용합니다.
+            text: '파일을 추가하여 템플릿 버튼을 생성하세요.'
+        });
+
+        container.append(emptyMessage);
+    } else {
+        $('#emptyContainerMessage').remove();
+    }
+}
+
+
 
 // Create a button for each file
 function createFileButton(file) {
@@ -80,6 +101,7 @@ function displayFileContent(file) {
     fileContentDiv.appendChild(iconButtonContainer);
 
     document.getElementById('fileContentsContainer').appendChild(fileContentDiv);
+    checkFileContentsContainer(); // Check and update message after adding content
 }
 // 아이콘 버튼 컨테이너를 생성하고 반환하는 함수
 function createIconButtonContainer(fileIndex, contentButtons) {
@@ -115,6 +137,7 @@ function createIconButtonContainer(fileIndex, contentButtons) {
         if (fileContentDiv) {
             fileContentDiv.remove();
         }
+        checkFileContentsContainer(); // Check and update message after adding content
     };
     iconButtonContainer.appendChild(deleteButton);
 

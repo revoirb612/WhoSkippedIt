@@ -191,3 +191,11 @@ body, html {
     font-size: 14px;
     padding: 10px 0;
 }
+
+#emptyContainerMessage {
+    position: fixed;  /* 고정 위치 */
+    top: 50%;         /* 상단으로부터 50% */
+    left: 50%;        /* 왼쪽으로부터 50% */
+    transform: translate(-50%, -50%); /* X와 Y 방향으로 50% 만큼 이동하여 중앙 정렬 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
