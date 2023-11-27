@@ -226,6 +226,11 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
     background-color: #357a38;
 }
 
+/* Counter 스타일 지정 */
+#counter {
+    padding: 10px 0;
+}
+
 /* Copyright 스타일 지정 */
 #copyright {
     text-align: center;
