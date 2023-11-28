@@ -12,7 +12,7 @@ $(document).ready(function () {
         var sidebarWidth = $('#sidebar').width();
         if ($('#sidebar').hasClass('active')) {
             $('#content').css('margin-left', sidebarWidth + 'px');
-            $('#sidebarCollapse').css('left', sidebarWidth + 'px');
+            $('#sidebarCollapse').css('left', sidebarWidth + 37 + 'px');
             $('#toggleIcon').removeClass('fa-arrow-right').addClass('fa-arrow-left');
         } else {
             $('#content').css('margin-left', '0');
