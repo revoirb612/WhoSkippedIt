@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('#sidebar, #content').addClass('active');
     var sidebarWidth = $('#sidebar').width();
     $('#content').css('margin-left', sidebarWidth + 'px');
-    $('#sidebarCollapse').css('left', sidebarWidth + 'px');
+    $('#sidebarCollapse').css('left', sidebarWidth + 37 + 'px');
     $('#toggleIcon').removeClass('fa-arrow-right').addClass('fa-arrow-left');
 
     // Toggle sidebar
