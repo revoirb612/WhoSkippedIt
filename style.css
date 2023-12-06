@@ -117,7 +117,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
 }
 #fileContentsContainer {
     text-align: center;
-    width: 65%;
+    width: 80%;
     margin: 0 auto; /* 상하 마진 추가 및 가운데 정렬 */
 }
 .file-content {
