@@ -21,25 +21,15 @@ $(document).ready(function () {
         }
     });
 
-    // 파일 업로드 이벤트 리스너
+    // File input change event
     document.getElementById('fileInput').addEventListener('change', function (event) {
         Array.from(event.target.files).forEach(function (file) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                // 파일의 내용을 읽어서 fileData 배열에 저장
-                fileData.push({
-                    file: file,
-                    content: e.target.result, // 파일의 전체 내용
-                    lines: e.target.result.split('\n') // 파일을 라인별로 분리
-                });
-                var fileButton = createFileButton(file);
-                document.getElementById('fileButtons').appendChild(fileButton);
-            };
-            reader.readAsText(file);
+            fileData.push({ file: file, lines: [], originalContent: [], removedButtons: [] });
+            var fileButton = createFileButton(file);
+            document.getElementById('fileButtons').appendChild(fileButton);
         });
     });
-  
-  
+
     // Initialize sortable container
     $("#fileContentsContainer").sortable();
 
@@ -98,25 +88,23 @@ function displayFileContent(file) {
     var fileContentDiv = document.createElement('div');
     fileContentDiv.className = 'file-content';
 
-    // 파일 상세 정보를 표시하는 부분
     var fileDetails = createFileDetails(file, fileIndex);
     fileContentDiv.appendChild(fileDetails);
 
-    // 파일의 내용을 라인별로 표시하는 부분
-    var contentButtons = createContentButtons(fileIndex); // fileIndex를 사용하는 대신 file 객체를 사용하도록 수정
+    var contentButtons = createContentButtons(file, fileIndex);
+    contentButtons.className = 'content-buttons';
     fileContentDiv.appendChild(contentButtons);
 
-    // 파일 내용을 조작할 수 있는 버튼 컨테이너를 추가하는 부분
+    $(contentButtons).sortable({
+        handle: '.drag-handle'
+    });
+
     var iconButtonContainer = createIconButtonContainer(fileIndex, contentButtons);
     fileContentDiv.appendChild(iconButtonContainer);
 
-    // 파일 내용을 실제로 화면에 추가하는 부분
     document.getElementById('fileContentsContainer').appendChild(fileContentDiv);
-
-    // 파일 컨테이너가 비어있는지 확인하고 메시지를 표시하는 부분
-    checkFileContentsContainer();
+    checkFileContentsContainer(); // Check and update message after adding content
 }
-
 // 아이콘 버튼 컨테이너를 생성하고 반환하는 함수
 function createIconButtonContainer(fileIndex, contentButtons) {
     var iconButtonContainer = document.createElement('div');
@@ -188,23 +176,26 @@ function createFileDetails(file, fileIndex) {
     fileInputDiv.appendChild(textInput);
     return fileInputDiv;
 }
-
 // Create buttons for content manipulation
-function createContentButtons(fileIndex) {
+function createContentButtons(file, fileIndex) {
     var contentButtons = document.createElement('div');
     contentButtons.style.display = 'flex';
     contentButtons.style.flexDirection = 'row'; // 수평 배열을 위해 row로 설정
     contentButtons.style.flexWrap = 'wrap'; // 내용이 많을 경우 다음 줄로 넘김
 
-    // fileData 배열에서 파일의 내용을 사용
-    var lines = fileData[fileIndex].lines;
-    lines.forEach(function (line) {
-        var lineContainer = createLineContainer(line, fileIndex);
-        contentButtons.appendChild(lineContainer);
-    });
-
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        var lines = e.target.result.split('\n');
+        fileData[fileIndex].originalContent = lines.slice();
+        lines.forEach(function (line) {
+            var lineContainer = createLineContainer(line, fileIndex);
+            contentButtons.appendChild(lineContainer);
+        });
+    };
+    reader.readAsText(file);
     return contentButtons;
 }
+
 // Create a container for each line of the file
 function createLineContainer(line, fileIndex) {
     var lineContainer = document.createElement('div');
