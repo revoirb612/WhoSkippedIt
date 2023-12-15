@@ -3,9 +3,8 @@ body, html {
     font-family: 'Noto Sans KR', sans-serif;
     overflow-x: hidden; /* 가로 스크롤 비활성화 */
     height: auto; /* 내용에 따라 높이 조정 */
-    background-color: #474f57; /* 사이드바보다 조금 밝은 배경색 */
-    color: #fff; /* 텍스트 색상을 밝게 설정 */
-    /* 기타 스타일 */
+    background-color: #474f57; /* 배경색 */
+    color: #fff; /* 텍스트 색상 */
 }
 
 /* 전체 페이지의 스크롤바 스타일 */
@@ -13,31 +12,31 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
     width: 10px; /* 스크롤바 너비 */
 }
 
-/* 스크롤바 핸들 */
 body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
     background: #888; /* 스크롤바 색상 */
     border-radius: 5px; /* 둥근 모서리 */
 }
 
-/* 스크롤바 핸들 호버 */
 body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
     background: #555; /* 호버 시 색상 */
 }
 
+/* 사이드바 스타일 */
 #sidebar {
     width: 300px;
     height: 100vh;
-    padding: 18.5px; /* 안쪽 여백 */
+    padding: 18.5px;
     position: fixed;
     left: -300px;
     top: 0;
     background: #343a40;
     color: white;
-    transition: left 0.3s; /* 부드러운 왼쪽 이동 효과 */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* 그림자 효과 추가 */
-    font-size: 1em; /* 텍스트 크기 */
-    overflow-y: auto; /* 세로 스크롤바 추가 */
-    overflow-x: hidden; /* 가로 스크롤바 숨김 */
+    transition: left 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    font-size: 1em;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1001; /* 높은 z-index 값으로 사이드바를 상위 레이어에 위치시킴 */
 }
 
 #sidebar.active {
@@ -50,76 +49,79 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
     left: 0;
     z-index: 1000;
     transform: translateY(-50%);
-    transition: left 0.3s, background-color 0.3s; /* 배경색 변경 효과 추가 */
+    transition: left 0.3s, background-color 0.3s;
     border: none;
     border-radius: 0;
     background-color: #343a40;
     color: white;
-    font-size: 1em; /* 텍스트 크기 조정 */
-    cursor: pointer; /* 커서 변경 */
+    font-size: 1em;
+    cursor: pointer;
 }
 
 #sidebarCollapse:hover {
     background-color: #1d2124; /* 호버 시 배경색 변경 */
 }
 
-/* 사이드바의 스크롤바 전체 스타일 */
+/* 사이드바의 스크롤바 스타일 */
 #sidebar::-webkit-scrollbar {
-    width: 10px; /* 스크롤바 너비 */
+    width: 10px;
 }
 
-/* 스크롤바 핸들 */
 #sidebar::-webkit-scrollbar-thumb {
-    background: #888; /* 스크롤바 색상 */
-    border-radius: 5px; /* 둥근 모서리 */
+    background: #888;
+    border-radius: 5px;
 }
 
-/* 스크롤바 핸들 호버 */
 #sidebar::-webkit-scrollbar-thumb:hover {
-    background: #555; /* 호버 시 색상 */
+    background: #555;
 }
 
 .drag-handle {
     cursor: move;
 }
+
 .drag-handle:hover {
-    color: #555; /* 호버 시 색상 변경 */
+    color: #555;
 }
 
 .file-list-button {
-    display: flex;       /* Flexbox 레이아웃 적용 */
-    width: 100%;        /* 버튼의 너비를 사이드바의 너비에 맞춤 */
-    align-items: center; /* 아이콘과 텍스트를 중앙 정렬 */
-    text-align: left;    /* 텍스트를 왼쪽 정렬 */
-    background-color: #f2f2f2; /* 배경색 */
-    border: 1px solid #ddd; /* 테두리 */
-    border-radius: 5px; /* 둥근 모서리 */
-    padding: 10px 15px; /* 안쪽 여백 */
-    transition: background-color 0.2s; /* 배경색 변경시 전환 효과 */
-    cursor: pointer; /* 커서 스타일 */
-    margin: 10px 5px; /* 바깥쪽 여백 */
+    display: flex;
+    width: 100%;
+    align-items: center;
+    text-align: left;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 15px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    margin: 10px 5px;
 }
 
 .file-list-button i {
-    font-size: 24px;     /* 아이콘 크기 조정 */
-    margin-right: 10px;  /* 아이콘과 텍스트 간의 간격 */
+    font-size: 24px;
+    margin-right: 10px;
 }
 
+/* 메인 컨텐츠 스타일 */
 #content {
     transition: margin-left .3s;
     padding: 0;
     height: 100vh;
 }
+
 #main-content {
     height: 100%;
     border: none;
     width: 100%;
 }
+
 #fileContentsContainer {
     text-align: center;
     width: 65%;
-    margin: 0 auto; /* 상하 마진 추가 및 가운데 정렬 */
+    margin: 0 auto;
 }
+
 .file-content {
     background-color: #f8f8f8;
     border-radius: 10px;
@@ -134,28 +136,28 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
 }
 
 .file-input input[type="text"] {
-    width: 100%; /* 전체 너비 사용 */
-    padding: 10px; /* 패딩 추가 */
-    border: none; /* 모든 테두리 제거 */
-    border-bottom: 2px solid #ccc; /* 하단 테두리만 추가 */
-    border-radius: 0; /* 둥근 모서리 제거 */
-    box-sizing: border-box; /* box-sizing 속성 추가 */
-    font-size: 1.2em; /* 글자 크기 증가 */
-    margin-bottom: 10px; /* 아래쪽 여백 */
-    background-color: #f8f8f8; /* 배경색을 컨테이너 색과 동일하게 설정 */
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    border-radius: 0;
+    box-sizing: border-box;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    background-color: #f8f8f8;
 }
 
 .file-input input[type="text"]:focus {
-    border-bottom-color: #4CAF50; /* 포커스 시 하단 경계선 색상 변경 */
-    box-shadow: 0 1px 0 rgba(76, 175, 80, 0.5); /* 포커스 시 하단 그림자 효과 */
+    border-bottom-color: #4CAF50;
+    box-shadow: 0 1px 0 rgba(76, 175, 80, 0.5);
 }
 
 .line-button {
-    padding: 10px 20px; /* 패딩 */
-    font-size: 1.4em; /* 글자 크기 */
-    color: #fff; /* 글자색 */
-    background-color: #4CAF50; /* 버튼 배경색 */
-    border: 2px solid #357a38; /* 더 굵은 테두리와 조화로운 색상 */
+    padding: 10px 20px;
+    font-size: 1.4em;
+    color: #fff;
+    background-color: #4CAF50;
+    border: 2px solid #357a38;
     border-radius: 3px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -163,7 +165,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
 }
 
 .line-button:hover {
-    background-color: #357a38; /* 호버 시 배경색 변경 */
+    background-color: #357a38;
 }
 
 .icon-button-container {
@@ -179,14 +181,14 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 1.4em; /* 글자 크기 증가 */
-    padding: 10px; /* 패딩을 약간 늘림 */
-    width: 50px; /* 버튼 너비 증가 */
-    height: 50px; /* 버튼 높이 즈가 */
+    font-size: 1.4em;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
     margin: 4px;
     border: none;
     border-radius: 4px;
-    background-color: #f7f7f7; /* 조화를 이루는 배경색 */
+    background-color: #f7f7f7;
 }
 
 .icon-button:hover {
@@ -195,7 +197,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
 }
 
 .fas {
-    font-size: 0.8em; /* 아이콘 크기 증가 */
+    font-size: 0.8em;
     color: #4CAF50;
 }
 
@@ -226,12 +228,11 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
     background-color: #357a38;
 }
 
-/* Counter 스타일 지정 */
+/* 기타 요소 스타일 */
 #counter {
     padding: 10px 0;
 }
 
-/* Copyright 스타일 지정 */
 #copyright {
     text-align: center;
     color: #fff;
@@ -240,9 +241,10 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
 }
 
 #emptyContainerMessage {
-    position: fixed;  /* 고정 위치 */
-    top: 50%;         /* 상단으로부터 50% */
-    left: 50%;        /* 왼쪽으로부터 50% */
-    transform: translate(-50%, -50%); /* X와 Y 방향으로 50% 만큼 이동하여 중앙 정렬 */
-    text-align: center; /* 텍스트 중앙 정렬 */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1000; /* 낮은 z-index 값으로 emptyContainerMessage를 하위 레이어에 위치시킴 */
 }
