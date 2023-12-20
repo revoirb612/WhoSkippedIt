@@ -35,6 +35,16 @@ $(document).ready(function () {
 
     // Check if fileContentsContainer is empty and display a message if it is
     checkFileContentsContainer();
+
+    // 데모 파일 데이터 생성
+    var demoFile = {
+        name: "데모 파일",
+        content: "여기에\n데모 파일의\n내용을\n채워넣으세요."
+    };
+
+    // 데모 버튼 생성 및 추가
+    var demoButton = createFileButton(demoFile);
+    document.getElementById('sidebar').appendChild(demoButton);
 });
 
 // Global file data array
@@ -82,29 +92,46 @@ function createFileButton(file) {
     return button;
 }
 
-// Display content of a file
+// Display content of a file or demo file
 function displayFileContent(file) {
-    var fileIndex = fileData.findIndex(f => f.file === file);
     var fileContentDiv = document.createElement('div');
     fileContentDiv.className = 'file-content';
 
-    var fileDetails = createFileDetails(file, fileIndex);
+    var fileDetails = createFileDetails(file);
     fileContentDiv.appendChild(fileDetails);
 
-    var contentButtons = createContentButtons(file, fileIndex);
+    var contentButtons = document.createElement('div');
     contentButtons.className = 'content-buttons';
     fileContentDiv.appendChild(contentButtons);
 
-    $(contentButtons).sortable({
-        handle: '.drag-handle'
-    });
+    var fileContent;
+    if (file.content) {
+        // 데모 파일의 경우
+        fileContent = file.content.split('\n');
+    } else {
+        // 실제 파일의 경우
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            fileContent = e.target.result.split('\n');
+            fileContent.forEach(function (line) {
+                var lineContainer = createLineContainer(line);
+                contentButtons.appendChild(lineContainer);
+            });
+        };
+        reader.readAsText(file);
+        return; // FileReader가 비동기적으로 작동하므로, 여기서 함수 실행을 종료합니다.
+    }
 
-    var iconButtonContainer = createIconButtonContainer(fileIndex, contentButtons);
-    fileContentDiv.appendChild(iconButtonContainer);
+    // 데모 파일의 내용을 처리
+    fileContent.forEach(function (line) {
+        var lineContainer = createLineContainer(line);
+        contentButtons.appendChild(lineContainer);
+    });
 
     document.getElementById('fileContentsContainer').appendChild(fileContentDiv);
     checkFileContentsContainer(); // Check and update message after adding content
 }
+
 // 아이콘 버튼 컨테이너를 생성하고 반환하는 함수
 function createIconButtonContainer(fileIndex, contentButtons) {
     var iconButtonContainer = document.createElement('div');
