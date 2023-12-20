@@ -38,7 +38,7 @@ $(document).ready(function () {
 
     // 데모 파일 데이터 생성
     var demoFile = {
-        name: "빈 파일.txt",
+        name: "미완성 기능.txt",
         content: "여기에\n데모 파일의\n내용을\n채워넣으세요."
     };
 
