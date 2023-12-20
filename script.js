@@ -42,9 +42,12 @@ $(document).ready(function () {
         content: "여기에\n데모 파일의\n내용을\n채워넣으세요."
     };
 
-    // 데모 버튼 생성 및 추가
+    // 데모 버튼 생성
     var demoButton = createFileButton(demoFile);
-    document.getElementById('sidebar').appendChild(demoButton);
+
+    // 특정 요소에 데모 버튼 추가
+    var targetElement = document.getElementById('demoButton'); // 또는 document.querySelector('.targetElementClass')
+    targetElement.appendChild(demoButton);
 });
 
 // Global file data array
