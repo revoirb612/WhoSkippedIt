@@ -107,10 +107,18 @@ function displayFileContent(file) {
     contentButtons.className = 'content-buttons';
     fileContentDiv.appendChild(contentButtons);
 
+    // 아이콘 버튼 컨테이너 추가
+    var iconButtonContainer = createIconButtonContainer(file, contentButtons);
+    fileContentDiv.appendChild(iconButtonContainer);
+
     var fileContent;
     if (file.content) {
         // 데모 파일의 경우
         fileContent = file.content.split('\n');
+        fileContent.forEach(function (line) {
+            var lineContainer = createLineContainer(line);
+            contentButtons.appendChild(lineContainer);
+        });
     } else {
         // 실제 파일의 경우
         var reader = new FileReader();
@@ -122,14 +130,7 @@ function displayFileContent(file) {
             });
         };
         reader.readAsText(file);
-        return; // FileReader가 비동기적으로 작동하므로, 여기서 함수 실행을 종료합니다.
     }
-
-    // 데모 파일의 내용을 처리
-    fileContent.forEach(function (line) {
-        var lineContainer = createLineContainer(line);
-        contentButtons.appendChild(lineContainer);
-    });
 
     document.getElementById('fileContentsContainer').appendChild(fileContentDiv);
     checkFileContentsContainer(); // Check and update message after adding content
