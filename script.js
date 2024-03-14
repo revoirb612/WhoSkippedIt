@@ -109,7 +109,14 @@ function displayFileContent(file) {
     checkFileContentsContainer(); // Check and update message after adding content
 }
 
-// 아이콘 버튼 컨테이너를 생성하고 반환하는 함수
+function deleteFileContent() {
+    var fileContentDiv = this.closest('.file-content');
+    if (fileContentDiv) {
+        fileContentDiv.remove();
+    }
+    checkFileContentsContainer();
+}
+
 function createIconButtonContainer(fileIndex, contentButtons) {
     var iconButtonContainer = document.createElement('div');
     iconButtonContainer.className = 'icon-button-container';
@@ -119,13 +126,7 @@ function createIconButtonContainer(fileIndex, contentButtons) {
         {icon: 'fa-plus', label: '내용 추가', onClick: () => addContent(fileIndex, contentButtons)},
         {icon: 'fa-undo-alt', label: '되돌리기', onClick: () => undoRemove(fileIndex, contentButtons)},
         {icon: 'fa-file-export', label: '내보내기', onClick: () => exportToFile(contentButtons, fileData[fileIndex].file.name, fileIndex)},
-        {icon: 'fa-trash', label: '이 복사본 삭제', onClick: function() {
-            var fileContentDiv = this.closest('.file-content');
-            if (fileContentDiv) {
-                fileContentDiv.remove();
-            }
-            checkFileContentsContainer();
-        }}
+        {icon: 'fa-trash', label: '이 복사본 삭제', onClick: deleteFileContent}
     ];
 
     // 버튼 정보 배열을 순회하며 각 버튼을 생성하고, 이벤트 핸들러를 바인딩
