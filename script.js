@@ -48,6 +48,18 @@ function loadPage(url) {
     $('#main-content').load(url);
 }
 
+function downloadFile(filename, content) {
+    var blob = new Blob([content], {type: "text/plain"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
 // Function to check if fileContentsContainer is empty and display a message
 function checkFileContentsContainer() {
     var container = $("#fileContentsContainer");
@@ -107,19 +119,6 @@ function displayFileContent(file) {
 
     document.getElementById('fileContentsContainer').appendChild(fileContentDiv);
     checkFileContentsContainer(); // Check and update message after adding content
-}
-
-
-
-// Create an icon button
-function createIconButton(iconClass, title) {
-    var button = document.createElement('button');
-    button.classList.add('icon-button'); // 여기에 클래스 추가
-    var icon = document.createElement('i');
-    icon.className = 'fas ' + iconClass;
-    button.appendChild(icon);
-    button.title = title; // Tooltip
-    return button;
 }
 
 // Create file details display with text input for editing file name
@@ -253,14 +252,13 @@ function createIconButtonContainer(fileIndex, contentButtons) {
     return iconButtonContainer;
 }
 
-function downloadFile(filename, content) {
-    var blob = new Blob([content], {type: "text/plain"});
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+// Create an icon button
+function createIconButton(iconClass, title) {
+    var button = document.createElement('button');
+    button.classList.add('icon-button'); // 여기에 클래스 추가
+    var icon = document.createElement('i');
+    icon.className = 'fas ' + iconClass;
+    button.appendChild(icon);
+    button.title = title; // Tooltip
+    return button;
 }
