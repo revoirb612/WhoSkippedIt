@@ -114,38 +114,26 @@ function createIconButtonContainer(fileIndex, contentButtons) {
     var iconButtonContainer = document.createElement('div');
     iconButtonContainer.className = 'icon-button-container';
 
-    // 내용 추가 버튼
-    var addButton = createIconButton('fa-plus', '내용 추가');
-    addButton.onclick = function () {
-        addContent(fileIndex, contentButtons);
-    };
-    iconButtonContainer.appendChild(addButton);
+    // 버튼 정보 및 클릭 이벤트 핸들러를 배열로 정의
+    var buttonsInfo = [
+        {icon: 'fa-plus', label: '내용 추가', onClick: () => addContent(fileIndex, contentButtons)},
+        {icon: 'fa-undo-alt', label: '되돌리기', onClick: () => undoRemove(fileIndex, contentButtons)},
+        {icon: 'fa-file-export', label: '내보내기', onClick: () => exportToFile(contentButtons, fileData[fileIndex].file.name, fileIndex)},
+        {icon: 'fa-trash', label: '이 복사본 삭제', onClick: function() {
+            var fileContentDiv = this.closest('.file-content');
+            if (fileContentDiv) {
+                fileContentDiv.remove();
+            }
+            checkFileContentsContainer();
+        }}
+    ];
 
-    // 되돌리기 버튼
-    var undoButton = createIconButton('fa-undo-alt', '되돌리기');
-    undoButton.onclick = function () {
-        undoRemove(fileIndex, contentButtons);
-    };
-    iconButtonContainer.appendChild(undoButton);
-
-    // 내보내기 버튼
-    var exportButton = createIconButton('fa-file-export', '내보내기');
-    exportButton.onclick = function () {
-        exportToFile(contentButtons, fileData[fileIndex].file.name, fileIndex);
-    };
-    iconButtonContainer.appendChild(exportButton);
-
-    // 삭제 버튼
-    var deleteButton = createIconButton('fa-trash', '이 복사본 삭제');
-    deleteButton.onclick = function () {
-        // `deleteButton`의 상위 요소를 찾아서 삭제
-        var fileContentDiv = this.closest('.file-content');
-        if (fileContentDiv) {
-            fileContentDiv.remove();
-        }
-        checkFileContentsContainer(); // Check and update message after adding content
-    };
-    iconButtonContainer.appendChild(deleteButton);
+    // 버튼 정보 배열을 순회하며 각 버튼을 생성하고, 이벤트 핸들러를 바인딩
+    buttonsInfo.forEach(function(buttonInfo) {
+        var button = createIconButton(buttonInfo.icon, buttonInfo.label);
+        button.onclick = buttonInfo.onClick;
+        iconButtonContainer.appendChild(button);
+    });
 
     return iconButtonContainer;
 }
