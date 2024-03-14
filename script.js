@@ -1,3 +1,6 @@
+// Global file data array
+var fileData = [];
+
 $(document).ready(function () {
     toggleSidebar();
 
@@ -39,9 +42,6 @@ function toggleSidebar() {
         window.uploadData();  // 사이드바 비활성화 시 데이터 업로드
     }
 }
-
-// Global file data array
-var fileData = [];
 
 // Function to load a page into the main content
 function loadPage(url) {
@@ -108,46 +108,37 @@ function displayFileContent(file) {
     document.getElementById('fileContentsContainer').appendChild(fileContentDiv);
     checkFileContentsContainer(); // Check and update message after adding content
 }
-// 아이콘 버튼 컨테이너를 생성하고 반환하는 함수
-function createIconButtonContainer(fileIndex, contentButtons) {
-    var iconButtonContainer = document.createElement('div');
-    iconButtonContainer.className = 'icon-button-container';
 
-    // 내용 추가 버튼
-    var addButton = createIconButton('fa-plus', '내용 추가');
-    addButton.onclick = function () {
-        addContent(fileIndex, contentButtons);
-    };
-    iconButtonContainer.appendChild(addButton);
-
-    // 되돌리기 버튼
-    var undoButton = createIconButton('fa-undo-alt', '되돌리기');
-    undoButton.onclick = function () {
-        undoRemove(fileIndex, contentButtons);
-    };
-    iconButtonContainer.appendChild(undoButton);
-
-    // 내보내기 버튼
-    var exportButton = createIconButton('fa-file-export', '내보내기');
-    exportButton.onclick = function () {
-        exportToFile(contentButtons, fileData[fileIndex].file.name, fileIndex);
-    };
-    iconButtonContainer.appendChild(exportButton);
-
-    // 삭제 버튼
-    var deleteButton = createIconButton('fa-trash', '이 복사본 삭제');
-    deleteButton.onclick = function () {
-        // `deleteButton`의 상위 요소를 찾아서 삭제
-        var fileContentDiv = this.closest('.file-content');
-        if (fileContentDiv) {
-            fileContentDiv.remove();
-        }
-        checkFileContentsContainer(); // Check and update message after adding content
-    };
-    iconButtonContainer.appendChild(deleteButton);
-
-    return iconButtonContainer;
+function createIconButton(iconClass, tooltip, onClick) {
+    return $('<button>')
+        .addClass('icon-button')
+        .attr('title', tooltip)
+        .append($('<i>').addClass(iconClass))
+        .on('click', onClick);
 }
+
+function createIconButtonContainer(fileIndex, contentButtons) {
+    var $iconButtonContainer = $('<div>').addClass('icon-button-container');
+
+    // 버튼과 관련된 액션을 정의
+    var actions = [
+        { iconClass: 'fa-plus', tooltip: '내용 추가', action: () => addContent(fileIndex, contentButtons) },
+        { iconClass: 'fa-undo-alt', tooltip: '되돌리기', action: () => undoRemove(fileIndex, contentButtons) },
+        { iconClass: 'fa-file-export', tooltip: '내보내기', action: () => exportToFile(contentButtons, fileData[fileIndex].file.name, fileIndex) },
+        { iconClass: 'fa-trash', tooltip: '이 복사본 삭제', action: function() {
+            $(this).closest('.file-content').remove();
+            checkFileContentsContainer(); // Check and update message after adding content
+        }},
+    ];
+
+    // 각 액션에 대한 버튼을 생성하고 컨테이너에 추가
+    actions.forEach(({ iconClass, tooltip, action }) => {
+        $iconButtonContainer.append(createIconButton(iconClass, tooltip, action));
+    });
+
+    return $iconButtonContainer;
+}
+
 
 // Create an icon button
 function createIconButton(iconClass, title) {
