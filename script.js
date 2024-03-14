@@ -114,35 +114,50 @@ function createIconButtonContainer(fileIndex, contentButtons) {
     var iconButtonContainer = document.createElement('div');
     iconButtonContainer.className = 'icon-button-container';
 
-    const buttonsConfig = [
-        { iconClass: 'fa-plus', title: '내용 추가', onClick: () => addContent(fileIndex, contentButtons) },
-        { iconClass: 'fa-undo-alt', title: '되돌리기', onClick: () => undoRemove(fileIndex, contentButtons) },
-        { iconClass: 'fa-file-export', title: '내보내기', onClick: () => exportToFile(contentButtons, fileData[fileIndex].file.name, fileIndex) },
-        { iconClass: 'fa-trash', title: '이 복사본 삭제', onClick: function() {
-            var fileContentDiv = this.closest('.file-content');
-            if (fileContentDiv) {
-                fileContentDiv.remove();
-            }
-            checkFileContentsContainer();
-        }},
-    ];
+    // 내용 추가 버튼
+    var addButton = createIconButton('fa-plus', '내용 추가');
+    addButton.onclick = function () {
+        addContent(fileIndex, contentButtons);
+    };
+    iconButtonContainer.appendChild(addButton);
 
-    buttonsConfig.forEach(({ iconClass, title, onClick }) => {
-        var button = createIconButton(iconClass, title);
-        button.onclick = onClick;
-        iconButtonContainer.appendChild(button);
-    });
+    // 되돌리기 버튼
+    var undoButton = createIconButton('fa-undo-alt', '되돌리기');
+    undoButton.onclick = function () {
+        undoRemove(fileIndex, contentButtons);
+    };
+    iconButtonContainer.appendChild(undoButton);
+
+    // 내보내기 버튼
+    var exportButton = createIconButton('fa-file-export', '내보내기');
+    exportButton.onclick = function () {
+        exportToFile(contentButtons, fileData[fileIndex].file.name, fileIndex);
+    };
+    iconButtonContainer.appendChild(exportButton);
+
+    // 삭제 버튼
+    var deleteButton = createIconButton('fa-trash', '이 복사본 삭제');
+    deleteButton.onclick = function () {
+        // `deleteButton`의 상위 요소를 찾아서 삭제
+        var fileContentDiv = this.closest('.file-content');
+        if (fileContentDiv) {
+            fileContentDiv.remove();
+        }
+        checkFileContentsContainer(); // Check and update message after adding content
+    };
+    iconButtonContainer.appendChild(deleteButton);
 
     return iconButtonContainer;
 }
 
+// Create an icon button
 function createIconButton(iconClass, title) {
     var button = document.createElement('button');
-    button.className = 'icon-button';
+    button.classList.add('icon-button'); // 여기에 클래스 추가
     var icon = document.createElement('i');
-    icon.className = `fas ${iconClass}`;
+    icon.className = 'fas ' + iconClass;
     button.appendChild(icon);
-    button.title = title;
+    button.title = title; // Tooltip
     return button;
 }
 
