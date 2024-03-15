@@ -24,8 +24,8 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
 /* 사이드바 스타일 */
 #sidebar {
     top: 0;
-    left: -360px;
-    width: 360px;
+    left: -480px;
+    width: 480px;
     height: 100vh;
     padding: 18.5px;
     position: fixed;
