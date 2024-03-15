@@ -16,3 +16,25 @@ function toggleSidebar() {
         window.uploadData();  // 사이드바 비활성화 시 데이터 업로드
     }
 }
+
+function createFileButton(file) {
+    var button = document.createElement('button');
+    var fileNameWithoutExtension = file.name.replace(/\.[^/.]+$/, "");
+
+    var icon = document.createElement('i');
+    icon.className = 'fas fa-file-alt';
+
+    var textSpan = document.createElement('span');
+    textSpan.textContent = fileNameWithoutExtension;
+
+    button.appendChild(icon);
+    button.appendChild(textSpan);
+
+    button.onclick = function () {
+        displayFileContent(file);
+    };
+
+    button.classList.add('file-list-button');
+
+    return button;
+}
