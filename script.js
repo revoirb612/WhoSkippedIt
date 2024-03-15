@@ -54,7 +54,7 @@ function createContentButtons(file, fileIndex) {
     reader.onload = function (e) {
         var items = e.target.result.split('\n');
         fileData[fileIndex].originalContent = items.slice();
-        itmes.forEach(function (item) {
+        items.forEach(function (item) {
             var itemButton = createItemButton(item, fileIndex);
             contentButtons.appendChild(itemButton);
         });
