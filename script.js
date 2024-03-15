@@ -1,6 +1,3 @@
-// Global file data array
-var fileData = [];
-
 $(document).ready(function () {
     toggleSidebar();
 
