@@ -225,6 +225,17 @@ function createIconButtonContainer(fileIndex, contentButtons) {
         {icon: 'fa-trash', label: '이 복사본 삭제', onClick: deleteFileContent}
     ];
 
+    // Create an icon button
+    function createIconButton(iconClass, title) {
+        var button = document.createElement('button');
+        button.classList.add('icon-button'); // 여기에 클래스 추가
+        var icon = document.createElement('i');
+        icon.className = 'fas ' + iconClass;
+        button.appendChild(icon);
+        button.title = title; // Tooltip
+        return button;
+    }
+    
     // 버튼 정보 배열을 순회하며 각 버튼을 생성하고, 이벤트 핸들러를 바인딩
     buttonsInfo.forEach(function(buttonInfo) {
         var button = createIconButton(buttonInfo.icon, buttonInfo.label);
@@ -235,13 +246,3 @@ function createIconButtonContainer(fileIndex, contentButtons) {
     return iconButtonContainer;
 }
 
-// Create an icon button
-function createIconButton(iconClass, title) {
-    var button = document.createElement('button');
-    button.classList.add('icon-button'); // 여기에 클래스 추가
-    var icon = document.createElement('i');
-    icon.className = 'fas ' + iconClass;
-    button.appendChild(icon);
-    button.title = title; // Tooltip
-    return button;
-}
