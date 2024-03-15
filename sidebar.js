@@ -13,7 +13,6 @@ function toggleSidebar() {
         $('#content').css('margin-left', '0');
         $('#sidebarCollapse').css('left', '0');
         $('#toggleIcon').removeClass('fa-arrow-left').addClass('fa-arrow-right');
-        window.uploadData();  // 사이드바 비활성화 시 데이터 업로드
     }
 }
 
