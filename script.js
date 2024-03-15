@@ -100,23 +100,23 @@ function createContentButtons(file, fileIndex) {
 }
 
 // Create a container for each line of the file
-function createItemContainer(line, fileIndex) {
-    var lineContainer = document.createElement('div');
-    lineContainer.style.display = 'flex'; // flex 레이아웃 사용
+function createItemContainer(item, fileIndex) {
+    var itemContainer = document.createElement('div');
+    itemContainer.style.display = 'flex'; // flex 레이아웃 사용
 
     var dragHandle = document.createElement('span');
     dragHandle.textContent = '☰';
     dragHandle.className = 'drag-handle';
 
     var button = document.createElement('button');
-    button.textContent = line;
-    button.className = 'line-button'; // CSS 클래스 추가
+    button.textContent = item;
+    button.className = 'item-button'; // CSS 클래스 추가
     button.onclick = function () {
-        fileData[fileIndex].removedButtons.push({ element: lineContainer, index: fileData[fileIndex].originalContent.indexOf(line) });
-        lineContainer.remove();
+        fileData[fileIndex].removedButtons.push({ element: itemContainer, index: fileData[fileIndex].originalContent.indexOf(item) });
+        itemContainer.remove();
     };
 
-    lineContainer.appendChild(dragHandle);
-    lineContainer.appendChild(button);
-    return lineContainer;
+    itemContainer.appendChild(dragHandle);
+    itemContainer.appendChild(button);
+    return itemContainer;
 }
