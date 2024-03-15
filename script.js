@@ -13,28 +13,6 @@ function checkFileContentsContainer() {
     }
 }
 
-function createFileButton(file) {
-    var button = document.createElement('button');
-    var fileNameWithoutExtension = file.name.replace(/\.[^/.]+$/, "");
-
-    var icon = document.createElement('i');
-    icon.className = 'fas fa-file-alt';
-
-    var textSpan = document.createElement('span');
-    textSpan.textContent = fileNameWithoutExtension;
-
-    button.appendChild(icon);
-    button.appendChild(textSpan);
-
-    button.onclick = function () {
-        displayFileContent(file);
-    };
-
-    button.classList.add('file-list-button');
-
-    return button;
-}
-
 // Display content of a file
 function displayFileContent(file) {
     var fileIndex = fileData.findIndex(f => f.file === file);
