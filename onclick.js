@@ -1,8 +1,8 @@
 function addContent(fileIndex, contentButtons) {
     var newContent = prompt('추가할 내용을 입력하세요:');
     if (newContent) {
-        var lineContainer = createLineContainer(newContent, fileIndex);
-        contentButtons.appendChild(lineContainer);
+        var itemButton = createItemButton(newContent, fileIndex);
+        contentButtons.appendChild(itemButton);
         fileData[fileIndex].originalContent.push(newContent);
     }
 }
@@ -10,8 +10,8 @@ function addContent(fileIndex, contentButtons) {
 function undoRemove(fileIndex, contentButtons) {
     var lastRemoved = fileData[fileIndex].removedButtons.pop();
     if (lastRemoved) {
-        var lineContainer = lastRemoved.element;
-        contentButtons.appendChild(lineContainer);
+        var itemButton = lastRemoved.element;
+        contentButtons.appendChild(itemButton);
     }
 }
 
@@ -23,12 +23,12 @@ function exportToFile(contentButtons, defaultFileName, fileIndex) {
         customFileName += '.txt';
     }
 
-    var lines = [];
+    var items = [];
     for (var i = 0; i < contentButtons.children.length; i++) {
-        var lineContainer = contentButtons.children[i];
+        var itemButton = contentButtons.children[i];
         lines.push(lineContainer.querySelector('button').textContent);
     }
-    var blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+    var blob = new Blob([items.join('\n')], { type: 'text/plain' });
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
     a.href = url;
