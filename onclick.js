@@ -26,7 +26,7 @@ function exportToFile(contentButtons, defaultFileName, fileIndex) {
     var items = [];
     for (var i = 0; i < contentButtons.children.length; i++) {
         var itemButton = contentButtons.children[i];
-        lines.push(lineContainer.querySelector('button').textContent);
+        items.push(itemButton.querySelector('button').textContent);
     }
     var blob = new Blob([items.join('\n')], { type: 'text/plain' });
     var url = URL.createObjectURL(blob);
