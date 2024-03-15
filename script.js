@@ -88,11 +88,11 @@ function createContentButtons(file, fileIndex) {
 
     var reader = new FileReader();
     reader.onload = function (e) {
-        var lines = e.target.result.split('\n');
-        fileData[fileIndex].originalContent = lines.slice();
-        lines.forEach(function (line) {
-            var lineContainer = createLineContainer(line, fileIndex);
-            contentButtons.appendChild(lineContainer);
+        var items = e.target.result.split('\n');
+        fileData[fileIndex].originalContent = items.slice();
+        itmes.forEach(function (item) {
+            var itemContainer = createItemContainer(item, fileIndex);
+            contentButtons.appendChild(itemContainer);
         });
     };
     reader.readAsText(file);
