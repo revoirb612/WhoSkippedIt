@@ -43,11 +43,6 @@ function toggleSidebar() {
     }
 }
 
-// Function to load a page into the main content
-function loadPage(url) {
-    $('#main-content').load(url);
-}
-
 // Function to check if fileContentsContainer is empty and display a message
 function checkFileContentsContainer() {
     var container = $("#fileContentsContainer");
