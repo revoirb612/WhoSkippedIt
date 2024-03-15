@@ -91,8 +91,8 @@ function createContentButtons(file, fileIndex) {
         var items = e.target.result.split('\n');
         fileData[fileIndex].originalContent = items.slice();
         itmes.forEach(function (item) {
-            var itemContainer = createItemContainer(item, fileIndex);
-            contentButtons.appendChild(itemContainer);
+            var itemButton = createItemButton(item, fileIndex);
+            contentButtons.appendChild(itemButton);
         });
     };
     reader.readAsText(file);
@@ -100,7 +100,7 @@ function createContentButtons(file, fileIndex) {
 }
 
 // Create a container for each line of the file
-function createItemContainer(item, fileIndex) {
+function createItemButton(item, fileIndex) {
     var itemContainer = document.createElement('div');
     itemContainer.style.display = 'flex'; // flex 레이아웃 사용
 
