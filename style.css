@@ -152,7 +152,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
     box-shadow: 0 1px 0 rgba(76, 175, 80, 0.5);
 }
 
-.line-button {
+.item-button {
     padding: 10px 20px;
     font-size: 1.4em;
     color: #fff;
@@ -164,7 +164,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
     margin: 8px;
 }
 
-.line-button:hover {
+.item-button:hover {
     background-color: #357a38;
 }
 
