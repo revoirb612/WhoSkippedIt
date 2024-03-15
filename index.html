@@ -71,6 +71,29 @@
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
     <script>
         var fileData = [];
+
+        $(document).ready(function () {
+            toggleSidebar();
+        
+            $('#sidebarCollapse').on('click', function () {
+                toggleSidebar();
+            });
+        
+            // File input change event
+            document.getElementById('fileInput').addEventListener('change', function (event) {
+                Array.from(event.target.files).forEach(function (file) {
+                    fileData.push({ file: file, lines: [], originalContent: [], removedButtons: [] });
+                    var fileButton = createFileButton(file);
+                    document.getElementById('fileButtons').appendChild(fileButton);
+                });
+            });
+        
+            // Initialize sortable container
+            $("#fileContentsContainer").sortable();
+        
+            // Check if fileContentsContainer is empty and display a message if it is
+            checkFileContentsContainer();
+        });
     </script>
     <script src="script.js"></script>
     <script src="iconButtonContainer.js"></script>
