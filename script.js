@@ -100,7 +100,7 @@ function createContentButtons(file, fileIndex) {
 }
 
 // Create a container for each line of the file
-function createLineContainer(line, fileIndex) {
+function createItemContainer(line, fileIndex) {
     var lineContainer = document.createElement('div');
     lineContainer.style.display = 'flex'; // flex 레이아웃 사용
 
