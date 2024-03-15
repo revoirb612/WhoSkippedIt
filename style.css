@@ -23,12 +23,12 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
 
 /* 사이드바 스타일 */
 #sidebar {
-    width: 300px;
+    top: 0;
+    left: -360px;
+    width: 360px;
     height: 100vh;
     padding: 18.5px;
     position: fixed;
-    left: -300px;
-    top: 0;
     background: #343a40;
     color: white;
     transition: left 0.3s;
