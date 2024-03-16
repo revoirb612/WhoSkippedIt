@@ -18,6 +18,20 @@ function toggleSidebar() {
 
 function setupFileInputChangeEvent() {
     document.getElementById('fileInput').addEventListener('change', function (event) {
+        Array.from(event.target.files).forEach(async function (file) {
+            // 파일 메타데이터와 추가적인 정보를 추출합니다.
+            const fileDataToStore = {
+                name: file.name,
+                type: file.type,
+                size: file.size,
+                lines: [], // 실제 파일에서 읽은 라인들을 여기에 저장할 수 있습니다.
+                originalContent: [], // 원본 파일 내용을 여기에 저장할 수 있습니다.
+                removedButtons: [] // 제거된 버튼 정보를 여기에 저장할 수 있습니다.
+            };
+            // IndexedDB에 파일 정보를 저장합니다.
+            await db.files.add(fileDataToStore);
+        });        
+        
         Array.from(event.target.files).forEach(function (file) {
             fileData.push({ file: file, lines: [], originalContent: [], removedButtons: [] });
             var fileButton = createFileButton(file);
