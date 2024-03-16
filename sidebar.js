@@ -18,6 +18,7 @@ function toggleSidebar() {
 
 function setupFileInputChangeEvent() {
     document.getElementById('fileInput').addEventListener('change', function (event) {
+        /*
         Array.from(event.target.files).forEach(function (file) {
             // 파일 타입 검사: 텍스트 파일인지 확인
             if (file.type === 'text/plain') {
@@ -47,6 +48,7 @@ function setupFileInputChangeEvent() {
                 console.error('The file is not a text/plain type.');
             }
         });
+        */
         
         Array.from(event.target.files).forEach(function (file) {
             fileData.push({ file: file, lines: [], originalContent: [], removedButtons: [] });
