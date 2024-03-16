@@ -16,6 +16,16 @@ function toggleSidebar() {
     }
 }
 
+function setupFileInputChangeEvent() {
+    document.getElementById('fileInput').addEventListener('change', function (event) {
+        Array.from(event.target.files).forEach(function (file) {
+            fileData.push({ file: file, lines: [], originalContent: [], removedButtons: [] });
+            var fileButton = createFileButton(file);
+            document.getElementById('fileButtons').appendChild(fileButton);
+        });
+    });
+}
+
 function createFileButton(file) {
     var button = document.createElement('button');
     var fileNameWithoutExtension = file.name.replace(/\.[^/.]+$/, "");
