@@ -4,19 +4,23 @@ function displayFileContent(file) {
     var fileContentDiv = document.createElement('div');
     fileContentDiv.className = 'file-content';
 
+    // 파일 이름 만들기
     var fileDetails = createFileDetails(file, fileIndex);
     fileContentDiv.appendChild(fileDetails);
 
+    // 명렬 버튼 만들기
     var contentButtons = createContentButtons(file, fileIndex);
     contentButtons.className = 'content-buttons';
     fileContentDiv.appendChild(contentButtons);
 
+    // 아이콘 버튼 만들기
+    var iconButtonContainer = createIconButtonContainer(fileIndex, contentButtons);
+    fileContentDiv.appendChild(iconButtonContainer);
+
+    // 명렬 버튼 이동 가능하게 만들기
     $(contentButtons).sortable({
         handle: '.drag-handle'
     });
-
-    var iconButtonContainer = createIconButtonContainer(fileIndex, contentButtons);
-    fileContentDiv.appendChild(iconButtonContainer);
 
     document.getElementById('fileContentsContainer').appendChild(fileContentDiv);
     checkFileContentsContainer(); // Check and update message after adding content
