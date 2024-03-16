@@ -39,8 +39,8 @@ function setupFileInputChangeEvent() {
                     const fileId = await db.files.add(WhoSkippedIt);
 
                     // 생성된 fileId를 사용하여 UI에 파일 버튼 생성 및 추가
-                    var fileButton = createFileButton2(fileId); // fileId를 인자로 전달
-                    document.getElementById('fileButtons').appendChild(fileButton);
+                    var fileButton2 = createFileButton2(fileId); // fileId를 인자로 전달
+                    document.getElementById('fileButtons').appendChild(fileButton2);
                 };
                 reader.readAsText(file); // 파일을 읽습니다.
             } else {
