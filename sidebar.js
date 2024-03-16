@@ -25,7 +25,7 @@ function setupFileInputChangeEvent() {
                 reader.onload = async function(e) {
                     // 파일의 내용을 읽은 후, 해당 내용을 content 필드에 저장합니다.
                     const content = e.target.result;
-                    const fileDataToStore = {
+                    const fileDataToStore  = {
                         name: file.name,
                         type: file.type,
                         size: file.size,
@@ -36,7 +36,7 @@ function setupFileInputChangeEvent() {
                     };
 
                     // IndexedDB에 파일 메타데이터와 내용을 저장하고, 생성된 ID를 가져옵니다.
-                    const fileId = await db.files.add(WhoSkippedIt);
+                    const fileId = await db.files.add(fileDataToStore);
 
                     // 생성된 fileId를 사용하여 UI에 파일 버튼 생성 및 추가
                     var fileButton2 = createFileButton2(fileId); // fileId를 인자로 전달
