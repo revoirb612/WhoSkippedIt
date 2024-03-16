@@ -35,8 +35,12 @@ function setupFileInputChangeEvent() {
                         removedButtons: [] // 제거된 버튼 정보
                     };
 
-                    // IndexedDB에 파일 메타데이터와 내용을 저장합니다.
-                    await db.files.add(WhoSkippedIt);
+                    // IndexedDB에 파일 메타데이터와 내용을 저장하고, 생성된 ID를 가져옵니다.
+                    const fileId = await db.files.add(WhoSkippedIt);
+
+                    // 생성된 fileId를 사용하여 UI에 파일 버튼 생성 및 추가
+                    var fileButton = createFileButton2(fileId); // fileId를 인자로 전달
+                    document.getElementById('fileButtons').appendChild(fileButton);
                 };
                 reader.readAsText(file); // 파일을 읽습니다.
             } else {
@@ -86,7 +90,6 @@ function setupFileInputChangeEvent() {
     });
 }
 
-
 function createFileButton(file) {
     var button = document.createElement('button');
     var fileNameWithoutExtension = file.name.replace(/\.[^/.]+$/, "");
@@ -107,4 +110,37 @@ function createFileButton(file) {
     button.classList.add('file-list-button');
 
     return button;
+}
+
+function createFileButton2(fileId) {
+    var button = document.createElement('button');
+
+    // IndexedDB에서 fileId를 사용하여 파일 정보 검색
+    db.files.get(fileId).then(file => {
+        var fileNameWithoutExtension = file.name.replace(/\.[^/.]+$/, "");
+        var icon = document.createElement('i');
+        icon.className = 'fas fa-file-alt';
+
+        var textSpan = document.createElement('span');
+        textSpan.textContent = fileNameWithoutExtension;
+
+        button.appendChild(icon);
+        button.appendChild(textSpan);
+
+        // 버튼 클릭 이벤트: 클릭 시 IndexedDB에서 파일 내용을 검색하여 표시
+        button.onclick = function () {
+            displayFileContent2(fileId); // 수정된 부분: 파일 객체 대신 fileId 사용
+        };
+
+        button.classList.add('file-list-button');
+    });
+
+    return button;
+}
+
+function displayFileContent2(fileId) {
+    db.files.get(fileId).then(file => {
+        // 파일의 내용을 화면에 표시하는 로직
+        // 예: document.getElementById('fileContent').textContent = file.content;
+    });
 }
