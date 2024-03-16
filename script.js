@@ -1,20 +1,26 @@
-function displayFileContent2(fileId) {
-    db.files.get(fileId).then(file => {
-        var fileContentDiv = document.createElement('div');
-        fileContentDiv.className = 'file-content';
+async function displayFileContent2(fileId) {
+    const file = await db.files.get(fileId);
+    if (!file) {
+        console.error('File not found in the database');
+        return;
+    }
+
+    var fileContentDiv = document.createElement('div');
+    fileContentDiv.className = 'file-content';
+
+    // 파일 이름 표시
+    var fileDetails = createFileDetails2(file);
+    fileContentDiv.appendChild(fileDetails);
+
+    /*
+    // 내용 조작을 위한 버튼 생성
+    var contentButtons = await createContentButtons2(file);
+    contentButtons.className = 'content-buttons';
+    fileContentDiv.appendChild(contentButtons);
+    */
     
-        // 파일 이름 만들기
-        var fileDetails = file.name;
-        fileContentDiv.appendChild(fileDetails);
-    
-        // 명렬 버튼 이동 가능하게 만들기
-        $(contentButtons).sortable({
-            handle: '.drag-handle'
-        });
-    
-        document.getElementById('fileContentsContainer').appendChild(fileContentDiv);
-        checkFileContentsContainer(); // Check and update message after adding content
-    });
+    // 파일 내용을 표시
+    document.getElementById('fileContentsContainer').appendChild(fileContentDiv);
 }
 
 // Display content of a file
@@ -46,14 +52,16 @@ function displayFileContent(file) {
 }
 
 // 파일 이름 만들기2
-function createFileDetails2(name) {
+function createFileDetails2(file) {
     var fileInputDiv = document.createElement('div');
-    fileInputDiv.className = 'file-input'; 
+    fileInputDiv.className = 'file-input';
 
     var textInput = document.createElement('input');
     textInput.type = 'text';
-    textInput.value = name; 
-    textInput.className = 'file-name-input'; 
+    textInput.value = file.name;
+    textInput.className = 'file-name-input';
+
+    // 파일 이름 변경 로직 필요시 여기에 추가
 
     fileInputDiv.appendChild(textInput);
     return fileInputDiv;
