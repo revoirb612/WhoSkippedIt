@@ -72,6 +72,11 @@
     <script>
         var fileData = [];
 
+        const db = new Dexie('MyFileDatabase');
+        db.version(1).stores({
+            files: '++id, name, type, size, lines, originalContent, removedButtons'
+        });
+
         $(document).ready(function () {
             toggleSidebar();
         
