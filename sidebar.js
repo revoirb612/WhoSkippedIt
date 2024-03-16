@@ -103,10 +103,3 @@ function createFileButton2(fileId) {
 
     return button;
 }
-
-function displayFileContent2(fileId) {
-    db.files.get(fileId).then(file => {
-        // 파일의 내용을 화면에 표시하는 로직
-        // 예: document.getElementById('fileContent').textContent = file.content;
-    });
-}
