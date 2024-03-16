@@ -74,7 +74,7 @@
         
         const db = new Dexie('WhoSkippedIt');
         db.version(1).stores({
-            files: '++id, name, type, size, content, file, lines, originalContent, removedButtons'
+            files: '++id, name, type, size, content, lines, originalContent, removedButtons'
         });
 
         $(document).ready(function () {
