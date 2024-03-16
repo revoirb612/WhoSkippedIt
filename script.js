@@ -1,3 +1,22 @@
+function displayFileContent2(fileId) {
+    db.files.get(fileId).then(file => {
+        var fileContentDiv = document.createElement('div');
+        fileContentDiv.className = 'file-content';
+    
+        // 파일 이름 만들기
+        var fileDetails = file.name;
+        fileContentDiv.appendChild(fileDetails);
+    
+        // 명렬 버튼 이동 가능하게 만들기
+        $(contentButtons).sortable({
+            handle: '.drag-handle'
+        });
+    
+        document.getElementById('fileContentsContainer').appendChild(fileContentDiv);
+        checkFileContentsContainer(); // Check and update message after adding content
+    });
+}
+
 // Display content of a file
 function displayFileContent(file) {
     var fileIndex = fileData.findIndex(f => f.file === file);
@@ -26,7 +45,21 @@ function displayFileContent(file) {
     checkFileContentsContainer(); // Check and update message after adding content
 }
 
-// Create file details display with text input for editing file name
+// 파일 이름 만들기2
+function createFileDetails2(name) {
+    var fileInputDiv = document.createElement('div');
+    fileInputDiv.className = 'file-input'; 
+
+    var textInput = document.createElement('input');
+    textInput.type = 'text';
+    textInput.value = name; 
+    textInput.className = 'file-name-input'; 
+
+    fileInputDiv.appendChild(textInput);
+    return fileInputDiv;
+}
+
+// 파일 이름 만들기
 function createFileDetails(file, fileIndex) {
     var fileInputDiv = document.createElement('div');
     fileInputDiv.className = 'file-input'; 
