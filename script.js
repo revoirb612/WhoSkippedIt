@@ -8,19 +8,23 @@ async function displayFileContent2(fileId) {
     var fileContentDiv = document.createElement('div');
     fileContentDiv.className = 'file-content';
 
-    // 파일 이름 표시
+    // 파일 이름 만들기
     var fileDetails = createFileDetails2(file);
     fileContentDiv.appendChild(fileDetails);
 
-    /*
-    // 내용 조작을 위한 버튼 생성
+    // 명렬 버튼 만들기
     var contentButtons = await createContentButtons2(file);
     contentButtons.className = 'content-buttons';
     fileContentDiv.appendChild(contentButtons);
-    */
+
+    // 명렬 버튼 이동 가능하게 만들기
+    $(contentButtons).sortable({
+        handle: '.drag-handle'
+    });
     
     // 파일 내용을 표시
     document.getElementById('fileContentsContainer').appendChild(fileContentDiv);
+    checkFileContentsContainer(); // Check and update message after adding content
 }
 
 // Display content of a file
@@ -85,6 +89,40 @@ function createFileDetails(file, fileIndex) {
 
     fileInputDiv.appendChild(textInput);
     return fileInputDiv;
+}
+
+async function createContentButtons2(file) {
+    var contentButtons = document.createElement('div');
+    contentButtons.style.display = 'flex';
+    contentButtons.style.flexDirection = 'row';
+    contentButtons.style.flexWrap = 'wrap';
+
+    // 파일 내용을 줄 단위로 나누고 각 줄에 대한 버튼 생성
+    var items = file.content.split('\n');
+    items.forEach(function(item) {
+        var itemButton = createItemButton2(item);
+        contentButtons.appendChild(itemButton);
+    });
+    return contentButtons;
+}
+
+function createItemButton2(item) {
+    var itemContainer = document.createElement('div');
+    itemContainer.style.display = 'flex';
+
+    var dragHandle = document.createElement('span');
+    dragHandle.textContent = '☰';
+    dragHandle.className = 'drag-handle';
+
+    var button = document.createElement('button');
+    button.textContent = item;
+    button.className = 'item-button';
+
+    // 아이템 삭제 로직이 필요한 경우 여기에 추가
+
+    itemContainer.appendChild(dragHandle);
+    itemContainer.appendChild(button);
+    return itemContainer;
 }
 
 // Create buttons for content manipulation
