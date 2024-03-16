@@ -18,21 +18,31 @@ function toggleSidebar() {
 
 function setupFileInputChangeEvent() {
     document.getElementById('fileInput').addEventListener('change', function (event) {
-        Array.from(event.target.files).forEach(async function (file) {
-            const fileDataToStore = {
-                name: file.name,
-                type: file.type,
-                size: file.size,
-                content: null, // 이전 예제와 같이 파일 내용을 여기에 저장할 수 있습니다.
-                file: file, // 파일 객체 자체를 저장합니다.
-                lines: [],
-                originalContent: [],
-                removedButtons: []
-            };
+        Array.from(event.target.files).forEach(function (file) {
+            // 파일 타입 검사: 텍스트 파일인지 확인
+            if (file.type === 'text/plain') {
+                const reader = new FileReader();
+                reader.onload = async function(e) {
+                    // 파일의 내용을 읽은 후, 해당 내용을 content 필드에 저장합니다.
+                    const content = e.target.result;
+                    const fileDataToStore = {
+                        name: file.name,
+                        type: file.type,
+                        size: file.size,
+                        content: content, // 읽은 파일 내용
+                        lines: [], // 선택적으로 파일 내용을 줄 단위로 처리하여 저장할 수 있습니다.
+                        originalContent: [], // 추가 처리를 위한 원본 내용 저장소
+                        removedButtons: [] // 제거된 버튼 정보
+                    };
 
-            // IndexedDB에 파일 정보와 파일 객체를 저장합니다.
-            await db.files.add(fileDataToStore);
-        });        
+                    // IndexedDB에 파일 메타데이터와 내용을 저장합니다.
+                    await db.files.add(WhoSkippedIt);
+                };
+                reader.readAsText(file); // 파일을 읽습니다.
+            } else {
+                console.error('The file is not a text/plain type.');
+            }
+        });
         
         Array.from(event.target.files).forEach(function (file) {
             fileData.push({ file: file, lines: [], originalContent: [], removedButtons: [] });
@@ -41,6 +51,41 @@ function setupFileInputChangeEvent() {
         });
     });
 }
+
+function setupFileInputChangeEvent() {
+    document.getElementById('fileInput').addEventListener('change', function (event) {
+        Array.from(event.target.files).forEach(function (file) {
+            // 파일 타입 검사: 텍스트 파일인지 확인
+            if (file.type === 'text/plain') {
+                const reader = new FileReader();
+                reader.onload = async function(e) {
+                    // 파일의 내용을 읽은 후, 해당 내용을 content 필드에 저장합니다.
+                    const content = e.target.result;
+                    const fileDataToStore = {
+                        name: file.name,
+                        type: file.type,
+                        size: file.size,
+                        content: content, // 읽은 파일 내용
+                        lines: [], // 선택적으로 파일 내용을 줄 단위로 처리하여 저장할 수 있습니다.
+                        originalContent: [], // 추가 처리를 위한 원본 내용 저장소
+                        removedButtons: [] // 제거된 버튼 정보
+                    };
+
+                    // IndexedDB에 파일 메타데이터와 내용을 저장합니다.
+                    await db.files.add(fileDataToStore);
+
+                    // UI에 파일 버튼 생성 및 추가
+                    var fileButton = createFileButton(file);
+                    document.getElementById('fileButtons').appendChild(fileButton);
+                };
+                reader.readAsText(file); // 파일을 읽습니다.
+            } else {
+                console.error('The file is not a text/plain type.');
+            }
+        });
+    });
+}
+
 
 function createFileButton(file) {
     var button = document.createElement('button');
