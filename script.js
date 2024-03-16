@@ -4,7 +4,6 @@ function displayFileContent(file) {
     var fileContentDiv = document.createElement('div');
     fileContentDiv.className = 'file-content';
 
-    // 아코디언 형태로 UI 변경?
     var fileDetails = createFileDetails(file, fileIndex);
     fileContentDiv.appendChild(fileDetails);
 
